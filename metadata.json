@@ -1,0 +1,6 @@
+{
+  "name": "Wallet & Womb",
+  "description": "Maternal and newborn health spending accountability dashboard tracking 26 Kenyan counties with budget allocations vs delivery, health trends, dark blue map, and investigative journalist tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
