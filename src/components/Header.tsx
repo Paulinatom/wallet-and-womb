@@ -1,22 +1,16 @@
 import React from 'react';
-import { CountyHealthData } from '../types';
-import { 
-  ShieldCheck, 
-  Download, 
-  MapPin, 
-  CheckCircle2, 
-  AlertTriangle, 
-  HeartHandshake, 
-  Radio, 
-  Search,
-  ChevronDown
-} from 'lucide-react';
+import { CountyHealthData, YearSummaryItem } from '../types';
+import { ChevronDown, Send, Info } from 'lucide-react';
 
 interface HeaderProps {
   counties: CountyHealthData[];
   selectedCounty: CountyHealthData;
   onSelectCounty: (county: CountyHealthData) => void;
   onOpenReportModal: () => void;
+  selectedYear: string;
+  onSelectYear: (year: string) => void;
+  availableYears: string[];
+  yearSummary: YearSummaryItem;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,82 +18,122 @@ export const Header: React.FC<HeaderProps> = ({
   selectedCounty,
   onSelectCounty,
   onOpenReportModal,
+  selectedYear,
+  onSelectYear,
+  availableYears,
+  yearSummary,
 }) => {
-  const onTrackCount = counties.filter((c) => c.status === 'on-track').length;
-  const laggingCount = counties.filter((c) => c.status === 'lagging').length;
+  const counts = yearSummary?.counts || {
+    'on-track': counties.filter((c) => c.status === 'on-track').length,
+    lagging: counties.filter((c) => c.status === 'lagging').length,
+    'data-incomplete': counties.filter(
+      (c) => c.status === 'data-incomplete' || c.status === 'data_incomplete'
+    ).length,
+    partial: counties.filter((c) => c.status === 'partial').length,
+  };
+
+  const showReliabilityBanner = yearSummary && yearSummary.reliability !== 'good';
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3.5 shadow-xl">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
-        {/* Brand & Identity */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-rose-600 p-0.5 shadow-lg shadow-blue-900/30 flex items-center justify-center">
-            <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <HeartHandshake className="w-5 h-5 text-rose-400" />
-            </div>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-lg lg:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
-                Wallet & Womb
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-blue-950 text-blue-300 border border-blue-800/50 uppercase tracking-widest">
-                  Kenya
-                </span>
-              </h1>
-            </div>
-            <p className="text-xs text-slate-400">
-              Maternal & Newborn Health Spending Accountability Across 26 Kenyan Counties
-            </p>
+    <header className="sticky top-0 z-40 bg-neutral-950 border-b border-neutral-800">
+      {/* Main Top Header Bar */}
+      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+        {/* Left: Brand Title & Single Status Line */}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+          <h1 className="text-lg font-bold text-neutral-100 tracking-tight">
+            Wallet & Womb
+          </h1>
+          <span className="hidden sm:inline text-neutral-600">|</span>
+          {/* Exactly one status count line on the page */}
+          <div className="text-[13px] text-neutral-400 font-medium flex flex-wrap items-center">
+            <span className="text-emerald-400 font-semibold">{counts['on-track']} on track</span>
+            <span className="mx-1.5 text-neutral-600">·</span>
+            <span className="text-rose-400 font-semibold">{counts.lagging} lagging</span>
+            <span className="mx-1.5 text-neutral-600">·</span>
+            <span className="text-amber-400 font-semibold">{counts['data-incomplete']} data incomplete</span>
+            {counts.partial > 0 && (
+              <>
+                <span className="mx-1.5 text-neutral-600">·</span>
+                <span className="text-neutral-400 font-semibold">{counts.partial} partial</span>
+              </>
+            )}
           </div>
         </div>
 
-        {/* Status Budges & Primary Actions */}
-        <div className="flex items-center flex-wrap gap-2 lg:gap-3">
-          {/* Green Status Badge */}
-          <div className="px-2.5 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-1.5 shadow-sm">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>{onTrackCount} On Track</span>
+        {/* Right: Financial Year selector, County selector, and Tip Drop button */}
+        <div className="flex items-center flex-wrap gap-2.5">
+          {/* Financial Year Dropdown */}
+          <div className="flex items-center gap-1.5 bg-neutral-900 border border-neutral-700 rounded-lg px-2.5 py-1 text-[13px]">
+            <span className="text-neutral-400 font-medium">FY:</span>
+            <div className="relative">
+              <select
+                id="financial-year-select"
+                value={selectedYear}
+                onChange={(e) => onSelectYear(e.target.value)}
+                className="bg-transparent text-neutral-100 font-bold focus:outline-none cursor-pointer pr-5 appearance-none"
+                aria-label="Select Financial Year"
+              >
+                {availableYears.map((yr) => (
+                  <option key={yr} value={yr} className="bg-neutral-900 text-neutral-100">
+                    {yr}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-0 top-1 pointer-events-none" />
+            </div>
           </div>
 
-          {/* Red Status Badge */}
-          <div className="px-2.5 py-1 rounded-lg bg-rose-950/80 border border-rose-500/40 text-rose-300 text-xs font-semibold flex items-center gap-1.5 shadow-sm">
-            <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
-            <span>{laggingCount} Lagging Behind</span>
-          </div>
-
-          {/* County Quick Selector Dropdown */}
+          {/* County Selector */}
           <div className="relative">
             <select
               id="header-county-select"
-              value={selectedCounty.id}
+              value={selectedCounty?.id || ''}
               onChange={(e) => {
                 const found = counties.find((c) => c.id === e.target.value);
                 if (found) onSelectCounty(found);
               }}
-              className="bg-slate-900 border border-slate-700/80 rounded-lg px-3 py-1.5 text-xs text-slate-200 font-semibold focus:outline-none focus:border-blue-500 cursor-pointer pr-7 appearance-none"
-              aria-label="Select one of 26 Kenyan counties"
+              className="bg-neutral-900 border border-neutral-700 rounded-lg px-3 py-1.5 text-[13px] text-neutral-200 font-medium focus:outline-none focus:border-neutral-500 cursor-pointer pr-8 appearance-none"
+              aria-label="Select county"
             >
-              {counties.map((c) => (
-                <option key={c.id} value={c.id}>
-                  #{String(c.code).padStart(2, '0')} {c.name} ({c.status === 'on-track' ? '🟢 On Track' : '🔴 Lagging'})
-                </option>
-              ))}
+              {counties.map((c) => {
+                let statusDot = '🟢';
+                if (c.status === 'lagging') statusDot = '🔴';
+                else if (c.status === 'data-incomplete' || c.status === 'data_incomplete') statusDot = '🟡';
+                else if (c.status === 'partial') statusDot = '⚪';
+
+                return (
+                  <option key={c.id} value={c.id} className="bg-neutral-900 text-neutral-200">
+                    {c.name} ({statusDot})
+                  </option>
+                );
+              })}
             </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2 top-2.5 pointer-events-none" />
+            <ChevronDown className="w-4 h-4 text-neutral-400 absolute right-2.5 top-2.5 pointer-events-none" />
           </div>
 
-          {/* Secure Tip Drop Button */}
+          {/* Small Tip Drop Button */}
           <button
-            id="open-secure-tip-drop-btn"
+            id="open-tip-drop-btn"
             onClick={onOpenReportModal}
-            className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-lg shadow-emerald-950/50"
+            className="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-200 border border-neutral-700 text-[13px] font-medium transition flex items-center gap-1.5"
           >
-            <ShieldCheck className="w-3.5 h-3.5" />
-            <span>Secure Tip Drop</span>
+            <Send className="w-3.5 h-3.5 text-neutral-300" />
+            <span>Tip Drop</span>
           </button>
         </div>
       </div>
+
+      {/* Requirement 4: Show the year's 'note' in a small banner under the dropdown when reliability is not 'good' */}
+      {showReliabilityBanner && (
+        <div className="bg-neutral-900/90 border-t border-neutral-800 px-4 lg:px-8 py-2">
+          <div className="max-w-7xl mx-auto flex items-center gap-2 text-[13px] text-neutral-300">
+            <Info className="w-4 h-4 text-amber-400 shrink-0" />
+            <span>
+              <strong className="text-neutral-200">{selectedYear} note:</strong> {yearSummary.note}
+            </span>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

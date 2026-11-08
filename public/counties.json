@@ -1,0 +1,3190 @@
+[
+ {
+  "id": "001",
+  "code": 44,
+  "name": "Migori",
+  "region": "Nyanza",
+  "status": "on-track",
+  "statusReason": "86% of the revised health budget was spent in FY2023/24",
+  "capital": "Migori",
+  "population": "1,116,436",
+  "promisedBudgetKES": 2601,
+  "deliveredBudgetKES": 2233,
+  "absorptionRate": 85.8,
+  "pendingDisbursementKES": 368,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "FY2024/25 health actuals are missing or implausibly low in the source report: ask the county why. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Migori: 86% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 80,
+   "y": 325,
+   "svgPathD": "M 65,305 L 105,305 L 110,345 L 70,345 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2712917450,
+    "q4_actual": 2120059991,
+    "absorption": 0.7815,
+    "recurrent_est": 2274201669,
+    "recurrent_actual": 1980127796,
+    "development_est": 438715781,
+    "development_actual": 139932195,
+    "status": "lagging"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2601048618,
+    "q4_actual": 2232669386,
+    "absorption": 0.8584,
+    "recurrent_est": 2106476196,
+    "recurrent_actual": 1960277387,
+    "development_est": 494572422,
+    "development_actual": 272391999,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2573579526,
+    "q4_actual": 374029032,
+    "absorption": 0.1453,
+    "recurrent_est": 2091788442,
+    "recurrent_actual": 303829970,
+    "development_est": 481791084,
+    "development_actual": 70199062,
+    "status": "data_incomplete"
+   },
+   "FY2025/26": {
+    "q1_approved": 2330440000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 350000000,
+    "actual": 406364909
+   },
+   "FY2023/24": {
+    "target": 349550000,
+    "actual": 337154048
+   },
+   "FY2024/25": {
+    "target": 480000000,
+    "actual": 226420000
+   },
+   "FY2025/26": {
+    "target": 503000000,
+    "actual": 592260000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 250450000,
+    "actual": 175412262
+   },
+   "FY2024/25": {
+    "target": 140000000,
+    "actual": 161410000
+   },
+   "FY2025/26": {
+    "target": 257000000,
+    "actual": 388110000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 589246038.76,
+   "gok_total_jul25_apr26": 242452388
+  },
+  "phc": {
+   "level2": 82193826,
+   "level3": 91219127,
+   "level4": 65559242,
+   "total_jul25_mar26": 238972195
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ABSORPTION_IMPLAUSIBLY_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 15% (actual 374,029,032 vs est 2,573,579,526); likely under-reporting, verify against COB report"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 151% of target"
+   }
+  ]
+ },
+ {
+  "id": "002",
+  "code": 7,
+  "name": "Garissa",
+  "region": "North Eastern",
+  "status": "on-track",
+  "statusReason": "86% of the revised health budget was spent in FY2023/24",
+  "capital": "Garissa",
+  "population": "841,353",
+  "promisedBudgetKES": 2789,
+  "deliveredBudgetKES": 2403,
+  "absorptionRate": 86.2,
+  "pendingDisbursementKES": 386,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 45% of its revised budget (KES 145M of 325M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Garissa: 86% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 355,
+   "y": 240,
+   "svgPathD": "M 315,195 L 385,185 L 420,240 L 360,285 L 320,245 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2646208269,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 2646208269,
+    "recurrent_actual": 0,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2789484063,
+    "q4_actual": 2403432754,
+    "absorption": 0.8616,
+    "recurrent_est": 2464760659,
+    "recurrent_actual": 2258688511,
+    "development_est": 324723404,
+    "development_actual": 144744243,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3356220847,
+    "q4_actual": 1769456349,
+    "absorption": 0.5272,
+    "recurrent_est": 2935720847,
+    "recurrent_actual": 1516563514,
+    "development_est": 420500000,
+    "development_actual": 252892835,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 3814000000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 116400000,
+    "actual": 81361298
+   },
+   "FY2023/24": {
+    "target": 139000000,
+    "actual": 151912817
+   },
+   "FY2024/25": {
+    "target": 140000000,
+    "actual": 73400000
+   },
+   "FY2025/26": {
+    "target": 198000000,
+    "actual": 489130000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 91000000,
+    "actual": 97056232
+   },
+   "FY2024/25": {
+    "target": 160000000,
+    "actual": 238810000
+   },
+   "FY2025/26": {
+    "target": 252000000,
+    "actual": 444860000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 383206203.92,
+   "gok_total_jul25_apr26": 209876177
+  },
+  "phc": {
+   "level2": 11371683,
+   "level3": 34804183,
+   "level4": 41022222,
+   "total_jul25_mar26": 87198088
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ACTUAL_MISSING",
+    "metric": "Health Q4 actual",
+    "fy": "FY 2022/23",
+    "detail": "Revised estimate 2,646,208,269 but actual is blank or zero"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 247% of target; check target set unrealistically low"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 177% of target"
+   }
+  ]
+ },
+ {
+  "id": "003",
+  "code": 1,
+  "name": "Mombasa",
+  "region": "Coast",
+  "status": "lagging",
+  "statusReason": "64% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Mombasa",
+  "population": "1,208,333",
+  "promisedBudgetKES": 4667,
+  "deliveredBudgetKES": 2982,
+  "absorptionRate": 63.9,
+  "pendingDisbursementKES": 1685,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 13% of its revised budget (KES 85M of 664M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Mombasa: 64% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 325,
+   "y": 410,
+   "svgPathD": "M 310,390 L 340,385 L 345,420 L 315,425 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3346468021,
+    "q4_actual": 4907965932,
+    "absorption": 1.4666,
+    "recurrent_est": 3156212932,
+    "recurrent_actual": 4895418535,
+    "development_est": 190255089,
+    "development_actual": 12547397,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 4666623006,
+    "q4_actual": 2981650397,
+    "absorption": 0.6389,
+    "recurrent_est": 4002833006,
+    "recurrent_actual": 2896456486,
+    "development_est": 663790000,
+    "development_actual": 85193911,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 4837316744,
+    "q4_actual": 2365388129,
+    "absorption": 0.489,
+    "recurrent_est": 4237316744,
+    "recurrent_actual": 2355757094,
+    "development_est": 600000000,
+    "development_actual": 9631035,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 4784840000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 4814500985,
+    "actual": 3998628848
+   },
+   "FY2023/24": {
+    "target": 5252796118,
+    "actual": 4457758296
+   },
+   "FY2024/25": {
+    "target": 4746915692,
+    "actual": 2279670000
+   },
+   "FY2025/26": {
+    "target": 3155140000,
+    "actual": 3910290000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 0,
+    "actual": 1127265714
+   },
+   "FY2024/25": {
+    "target": 1249989988,
+    "actual": 937790000
+   },
+   "FY2025/26": {
+    "target": 1922790000,
+    "actual": 1718190000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 1616218649.57,
+   "gok_total_jul25_apr26": 745887285.5
+  },
+  "phc": {
+   "level2": 278981531,
+   "level3": 160177574,
+   "level4": 145524516,
+   "total_jul25_mar26": 584683621
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_OVER_100",
+    "metric": "Health absorption",
+    "fy": "FY 2022/23",
+    "detail": "Absorption 147%; actual exceeds estimate, check supplementary budget"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 49%; verify before attributing to county performance"
+   },
+   {
+    "severity": "Medium",
+    "flag": "TARGET_ZERO",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "FIF target is zero or blank"
+   }
+  ]
+ },
+ {
+  "id": "004",
+  "code": 42,
+  "name": "Kisumu",
+  "region": "Nyanza",
+  "status": "on-track",
+  "statusReason": "84% of the revised health budget was spent in FY2023/24",
+  "capital": "Kisumu City",
+  "population": "1,155,574",
+  "promisedBudgetKES": 3705,
+  "deliveredBudgetKES": 3130,
+  "absorptionRate": 84.5,
+  "pendingDisbursementKES": 575,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 29% of its revised budget (KES 68M of 230M). FY2024/25 health actuals are missing or implausibly low in the source report: ask the county why. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kisumu: 84% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 100,
+   "y": 250,
+   "svgPathD": "M 85,235 L 115,235 L 120,265 L 85,265 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3574975464,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 3394875464,
+    "recurrent_actual": 0,
+    "development_est": 180100000,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3705209355,
+    "q4_actual": 3129974136.9,
+    "absorption": 0.8447,
+    "recurrent_est": 3475334821,
+    "recurrent_actual": 3062199328,
+    "development_est": 229874534,
+    "development_actual": 67774808.9,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1336363749,
+    "q4_actual": 223047893.3,
+    "absorption": 0.1669,
+    "recurrent_est": 1212713749,
+    "recurrent_actual": 223047893.3,
+    "development_est": 123650000,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2025/26": {
+    "q1_approved": 3968670000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1762226587,
+    "actual": 731449033
+   },
+   "FY2023/24": {
+    "target": 1682844694,
+    "actual": 840231049
+   },
+   "FY2024/25": {
+    "target": 2877951100,
+    "actual": 611960000
+   },
+   "FY2025/26": {
+    "target": 965540000,
+    "actual": 1087230000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 600000000,
+    "actual": 603376939
+   },
+   "FY2024/25": {
+    "target": 926122000,
+    "actual": 752110000
+   },
+   "FY2025/26": {
+    "target": 800000000,
+    "actual": 505570000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 1187775930,
+   "private_total_jul25_apr26": 1357688190.06
+  },
+  "phc": {
+   "level2": 132574903,
+   "level3": 159184951,
+   "level4": 114801628,
+   "total_jul25_mar26": 406561482
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ACTUAL_MISSING",
+    "metric": "Health Q4 actual",
+    "fy": "FY 2022/23",
+    "detail": "Revised estimate 3,574,975,464 but actual is blank or zero"
+   },
+   {
+    "severity": "High",
+    "flag": "ABSORPTION_IMPLAUSIBLY_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 17% (actual 223,047,893 vs est 1,336,363,749); likely under-reporting, verify against COB report"
+   },
+   {
+    "severity": "Medium",
+    "flag": "DEV_ACTUAL_ZERO",
+    "metric": "Development spending",
+    "fy": "FY 2024/25",
+    "detail": "Development estimate exists but development actual is zero or blank while recurrent actual is reported"
+   }
+  ]
+ },
+ {
+  "id": "005",
+  "code": 45,
+  "name": "Kisii",
+  "region": "Nyanza",
+  "status": "lagging",
+  "statusReason": "79% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Kisii",
+  "population": "1,266,860",
+  "promisedBudgetKES": 3957,
+  "deliveredBudgetKES": 3134,
+  "absorptionRate": 79.2,
+  "pendingDisbursementKES": 824,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 11% of its revised budget (KES 67M of 632M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kisii: 79% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3761268798,
+    "q4_actual": 3067050088,
+    "absorption": 0.8154,
+    "recurrent_est": 3045829738,
+    "recurrent_actual": 2983625600,
+    "development_est": 715439060,
+    "development_actual": 83424488,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3957430185,
+    "q4_actual": 3133579488,
+    "absorption": 0.7918,
+    "recurrent_est": 3325914873,
+    "recurrent_actual": 3066635953,
+    "development_est": 631515312,
+    "development_actual": 66943535,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 4255446762,
+    "q4_actual": 2007466859,
+    "absorption": 0.4717,
+    "recurrent_est": 3525660794,
+    "recurrent_actual": 1901685085,
+    "development_est": 729785968,
+    "development_actual": 105781774,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 6458800000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 650000000,
+    "actual": 413988597
+   },
+   "FY2023/24": {
+    "target": 650000000,
+    "actual": 496943902
+   },
+   "FY2024/25": {
+    "target": 650000000,
+    "actual": 347000000
+   },
+   "FY2025/26": {
+    "target": 865000000,
+    "actual": 1161620000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 1097703138,
+    "actual": 683218135
+   },
+   "FY2024/25": {
+    "target": 1561093565,
+    "actual": 658760000
+   },
+   "FY2025/26": {
+    "target": 1700000000,
+    "actual": 809140000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 1932825967.05,
+   "gok_total_jul25_apr26": 389478620
+  },
+  "phc": {
+   "level2": 148583702,
+   "level3": 122039167,
+   "level4": 51765519,
+   "total_jul25_mar26": 322388388
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 47%; verify before attributing to county performance"
+   }
+  ]
+ },
+ {
+  "id": "006",
+  "code": 15,
+  "name": "Kitui",
+  "region": "Eastern",
+  "status": "on-track",
+  "statusReason": "99% of the revised health budget was spent in FY2023/24",
+  "capital": "Kitui",
+  "population": "1,136,187",
+  "promisedBudgetKES": 3718,
+  "deliveredBudgetKES": 3675,
+  "absorptionRate": 98.9,
+  "pendingDisbursementKES": 43,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kitui: 99% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 275,
+   "y": 285,
+   "svgPathD": "M 255,255 L 295,255 L 305,315 L 260,315 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3612487534,
+    "q4_actual": 3536771891,
+    "absorption": 0.979,
+    "recurrent_est": 3412276672,
+    "recurrent_actual": 3397483515,
+    "development_est": 200210862,
+    "development_actual": 139288376,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3717865325,
+    "q4_actual": 3674930239,
+    "absorption": 0.9885,
+    "recurrent_est": 3467530512,
+    "recurrent_actual": 3454500875,
+    "development_est": 250334813,
+    "development_actual": 220429364,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3791693102,
+    "q4_actual": 3170616269,
+    "absorption": 0.8362,
+    "recurrent_est": 3417070651,
+    "recurrent_actual": 3075184521,
+    "development_est": 374622451,
+    "development_actual": 95431748,
+    "status": "on_track"
+   },
+   "FY2025/26": {
+    "q1_approved": 4152580000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 600000000,
+    "actual": 464354467
+   },
+   "FY2023/24": {
+    "target": 500000000,
+    "actual": 517049816
+   },
+   "FY2024/25": {
+    "target": 249800000,
+    "actual": 171880000
+   },
+   "FY2025/26": {
+    "target": 312350000,
+    "actual": 648470000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 370637113,
+    "actual": 0
+   },
+   "FY2024/25": {
+    "target": 350000000,
+    "actual": 363430000
+   },
+   "FY2025/26": {
+    "target": 773900000,
+    "actual": 452220000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 289712775,
+   "private_total_jul25_apr26": 291452583.9
+  },
+  "phc": {
+   "level2": 71608242,
+   "level3": 86065721,
+   "level4": 83788184,
+   "total_jul25_mar26": 241462147
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 208% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "007",
+  "code": 47,
+  "name": "Nairobi",
+  "region": "Nairobi",
+  "status": "on-track",
+  "statusReason": "85% of the revised health budget was spent in FY2023/24",
+  "capital": "Nairobi City",
+  "population": "4,397,073",
+  "promisedBudgetKES": 8963,
+  "deliveredBudgetKES": 7611,
+  "absorptionRate": 84.9,
+  "pendingDisbursementKES": 1352,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 30% of its revised budget (KES 160M of 540M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Nairobi: 85% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 235,
+   "y": 295,
+   "svgPathD": "M 225,285 L 248,285 L 250,305 L 227,305 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 5968606692,
+    "q4_actual": 476548117,
+    "absorption": 0.0798,
+    "recurrent_est": 5456303329,
+    "recurrent_actual": 335209823,
+    "development_est": 512303363,
+    "development_actual": 141338294,
+    "status": "data_incomplete"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 8962941548,
+    "q4_actual": 7611131366,
+    "absorption": 0.8492,
+    "recurrent_est": 8423134191,
+    "recurrent_actual": 7451069043,
+    "development_est": 539807357,
+    "development_actual": 160062323,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 10022989168,
+    "q4_actual": 5914613372,
+    "absorption": 0.5901,
+    "recurrent_est": 7972152634,
+    "recurrent_actual": 5912567870,
+    "development_est": 2050836534,
+    "development_actual": 2045502,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 10505830000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 18027834347,
+    "actual": 10237263780
+   },
+   "FY2023/24": {
+    "target": 19420072415,
+    "actual": 11469860349
+   },
+   "FY2024/25": {
+    "target": 20060926033,
+    "actual": 8711690000
+   },
+   "FY2025/26": {
+    "target": 19942050000,
+    "actual": 10789420000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 570000000,
+    "actual": 1072234069
+   },
+   "FY2024/25": {
+    "target": 630000000,
+    "actual": 1246690000
+   },
+   "FY2025/26": {
+    "target": 1236000000,
+    "actual": 1348850000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 4218408644.94,
+   "private_total_jul25_apr26": 8758017960.14
+  },
+  "phc": {
+   "level2": 401334906,
+   "level3": 758994531,
+   "level4": 178203429,
+   "total_jul25_mar26": 1338532866
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ABSORPTION_IMPLAUSIBLY_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2022/23",
+    "detail": "Absorption 8% (actual 476,548,117 vs est 5,968,606,692); likely under-reporting, verify against COB report"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 188% of target"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2024/25",
+    "detail": "Actual is 198% of target"
+   }
+  ]
+ },
+ {
+  "id": "008",
+  "code": 16,
+  "name": "Machakos",
+  "region": "Eastern",
+  "status": "on-track",
+  "statusReason": "88% of the revised health budget was spent in FY2023/24",
+  "capital": "Machakos",
+  "population": "1,421,932",
+  "promisedBudgetKES": 5182,
+  "deliveredBudgetKES": 4571,
+  "absorptionRate": 88.2,
+  "pendingDisbursementKES": 611,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Machakos: 88% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 250,
+   "y": 310,
+   "svgPathD": "M 235,295 L 265,295 L 270,335 L 235,335 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 4644439262,
+    "q4_actual": 3978999762,
+    "absorption": 0.8567,
+    "recurrent_est": 3919337981,
+    "recurrent_actual": 3797439207,
+    "development_est": 725101281,
+    "development_actual": 181560555,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 5182384403,
+    "q4_actual": 4571195362,
+    "absorption": 0.8821,
+    "recurrent_est": 4345780767,
+    "recurrent_actual": 4101154868,
+    "development_est": 836603636,
+    "development_actual": 470040494,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 4954719006,
+    "q4_actual": 3498567760,
+    "absorption": 0.7061,
+    "recurrent_est": 4347140010,
+    "recurrent_actual": 3332730821,
+    "development_est": 607578996,
+    "development_actual": 165836939,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 4723160000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1690079199,
+    "actual": 1429791260
+   },
+   "FY2023/24": {
+    "target": 2998879462,
+    "actual": 1344939101
+   },
+   "FY2024/25": {
+    "target": 2788961508,
+    "actual": 1008170000
+   },
+   "FY2025/26": {
+    "target": 3020880000,
+    "actual": 2620930000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 1008000000,
+    "actual": 204409376
+   },
+   "FY2024/25": {
+    "target": 687000000,
+    "actual": 170390000
+   },
+   "FY2025/26": {
+    "target": 1069900000,
+    "actual": 1242110000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 578463081,
+   "private_total_jul25_apr26": 742309537.41
+  },
+  "phc": {
+   "level2": 248138476,
+   "level3": 162817493,
+   "level4": 31864365,
+   "total_jul25_mar26": 442820334
+  },
+  "dataFlags": []
+ },
+ {
+  "id": "009",
+  "code": 32,
+  "name": "Nakuru",
+  "region": "Rift Valley",
+  "status": "lagging",
+  "statusReason": "62% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Nakuru",
+  "population": "2,162,202",
+  "promisedBudgetKES": 3689,
+  "deliveredBudgetKES": 2297,
+  "absorptionRate": 62.3,
+  "pendingDisbursementKES": 1392,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 20% of its revised budget (KES 341M of 1,667M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Nakuru: 62% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 180,
+   "y": 255,
+   "svgPathD": "M 160,235 L 205,230 L 210,275 L 165,275 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 7324400259,
+    "q4_actual": 5610200417,
+    "absorption": 0.766,
+    "recurrent_est": 6042315980,
+    "recurrent_actual": 5283537014,
+    "development_est": 1282084279,
+    "development_actual": 326663403,
+    "status": "lagging"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3689250333,
+    "q4_actual": 2296903292,
+    "absorption": 0.6226,
+    "recurrent_est": 2021873992,
+    "recurrent_actual": 1956249074,
+    "development_est": 1667376341,
+    "development_actual": 340654218,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 8617475248,
+    "q4_actual": 4140805929,
+    "absorption": 0.4805,
+    "recurrent_est": 7138479008,
+    "recurrent_actual": 4053484840,
+    "development_est": 1478996240,
+    "development_actual": 87321089,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 8571220000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1980000000,
+    "actual": 1611062682
+   },
+   "FY2023/24": {
+    "target": 1900000000,
+    "actual": 1852802262
+   },
+   "FY2024/25": {
+    "target": 2226948043,
+    "actual": 1270590000
+   },
+   "FY2025/26": {
+    "target": 2400000000,
+    "actual": 2815900000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 1700000000,
+    "actual": 1468498216
+   },
+   "FY2024/25": {
+    "target": 1880210000,
+    "actual": 1278750000
+   },
+   "FY2025/26": {
+    "target": 2175900000,
+    "actual": 1502580000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 1041622973,
+   "private_total_jul25_apr26": 985757538.51
+  },
+  "phc": {
+   "level2": 247374181,
+   "level3": 212324977,
+   "level4": 95800658,
+   "total_jul25_mar26": 555499816
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 48%; verify before attributing to county performance"
+   }
+  ]
+ },
+ {
+  "id": "010",
+  "code": 26,
+  "name": "Trans Nzoia",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "93% of the revised health budget was spent in FY2023/24",
+  "capital": "Kitale",
+  "population": "990,341",
+  "promisedBudgetKES": 2271,
+  "deliveredBudgetKES": 2106,
+  "absorptionRate": 92.8,
+  "pendingDisbursementKES": 164,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 18% of its revised budget (KES 35M of 199M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Trans Nzoia: 93% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2416032616,
+    "q4_actual": 2113316719.3,
+    "absorption": 0.8747,
+    "recurrent_est": 2416032616,
+    "recurrent_actual": 2113316719.3,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2270597908,
+    "q4_actual": 2106253750,
+    "absorption": 0.9276,
+    "recurrent_est": 2071639253,
+    "recurrent_actual": 2071201615,
+    "development_est": 198958655,
+    "development_actual": 35052135,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2465523121,
+    "q4_actual": 1597444725,
+    "absorption": 0.6479,
+    "recurrent_est": 2302550904,
+    "recurrent_actual": 1586671104,
+    "development_est": 162972217,
+    "development_actual": 10773621,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 2677440000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 629500000,
+    "actual": 267760051
+   },
+   "FY2023/24": {
+    "target": 342000000,
+    "actual": 266785779
+   },
+   "FY2024/25": {
+    "target": 363000000,
+    "actual": 205910000
+   },
+   "FY2025/26": {
+    "target": 324970000,
+    "actual": 488570000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 301700000,
+    "actual": 209852393
+   },
+   "FY2024/25": {
+    "target": 311700000,
+    "actual": 175300000
+   },
+   "FY2025/26": {
+    "target": 275030000,
+    "actual": 245430000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 377720926,
+   "gok_total_jul25_apr26": 208160949
+  },
+  "phc": {
+   "level2": 47111633,
+   "level3": 69826114,
+   "level4": 60180970,
+   "total_jul25_mar26": 177118717
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 150% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "011",
+  "code": 39,
+  "name": "Bungoma",
+  "region": "Western",
+  "status": "lagging",
+  "statusReason": "63% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Bungoma",
+  "population": "1,670,570",
+  "promisedBudgetKES": 4000,
+  "deliveredBudgetKES": 2531,
+  "absorptionRate": 63.3,
+  "pendingDisbursementKES": 1470,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 49% of its revised budget (KES 126M of 258M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Bungoma: 63% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 95,
+   "y": 165,
+   "svgPathD": "M 80,145 L 120,145 L 125,180 L 85,180 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3616881407,
+    "q4_actual": 2717614158,
+    "absorption": 0.7514,
+    "recurrent_est": 3424904490,
+    "recurrent_actual": 2562194681,
+    "development_est": 191976917,
+    "development_actual": 155419477,
+    "status": "lagging"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 4000381279,
+    "q4_actual": 2530752546,
+    "absorption": 0.6326,
+    "recurrent_est": 3742764106,
+    "recurrent_actual": 2404946991,
+    "development_est": 257617173,
+    "development_actual": 125805555,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 4066508360,
+    "q4_actual": 3161280953,
+    "absorption": 0.7774,
+    "recurrent_est": 3807032656,
+    "recurrent_actual": 3054016177,
+    "development_est": 259475704,
+    "development_actual": 107264776,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 1696730000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 700000000,
+    "actual": 379716358
+   },
+   "FY2023/24": {
+    "target": 918701471,
+    "actual": 439484834
+   },
+   "FY2024/25": {
+    "target": 1193245420,
+    "actual": 352700000
+   },
+   "FY2025/26": {
+    "target": 671060000,
+    "actual": 1221760000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 1124665392,
+    "actual": 681424515
+   },
+   "FY2024/25": {
+    "target": 1063647395,
+    "actual": 441400000
+   },
+   "FY2025/26": {
+    "target": 1295070000,
+    "actual": 831130000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 542951202.7,
+   "private_total_jul25_apr26": 506142986.59
+  },
+  "phc": {
+   "level2": 188699926,
+   "level3": 164922481,
+   "level4": 86375283,
+   "total_jul25_mar26": 439997690
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 182% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "012",
+  "code": 43,
+  "name": "Homa Bay",
+  "region": "Nyanza",
+  "status": "on-track",
+  "statusReason": "86% of the revised health budget was spent in FY2023/24",
+  "capital": "Homa Bay",
+  "population": "1,131,950",
+  "promisedBudgetKES": 2760,
+  "deliveredBudgetKES": 2361,
+  "absorptionRate": 85.5,
+  "pendingDisbursementKES": 399,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "No development budget was reported in the Q4 revised estimates. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Homa Bay: 86% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 80,
+   "y": 280,
+   "svgPathD": "M 60,265 L 105,265 L 105,305 L 65,305 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3126643508,
+    "q4_actual": 3079088788,
+    "absorption": 0.9848,
+    "recurrent_est": 2643586565,
+    "recurrent_actual": 2630069006,
+    "development_est": 483056943,
+    "development_actual": 449019782,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2759978523,
+    "q4_actual": 2361241707,
+    "absorption": 0.8555,
+    "recurrent_est": 2759978523,
+    "recurrent_actual": 2361241707,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2914718389,
+    "q4_actual": 2076255611,
+    "absorption": 0.7123,
+    "recurrent_est": 2914718389,
+    "recurrent_actual": 2076255611,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 3330190000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 191080752,
+    "actual": 491496550
+   },
+   "FY2023/24": {
+    "target": 490895690,
+    "actual": 841232651
+   },
+   "FY2024/25": {
+    "target": 501737917,
+    "actual": 285540000
+   },
+   "FY2025/26": {
+    "target": 566180000,
+    "actual": 1018620000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 1888053228,
+    "actual": 359263180
+   },
+   "FY2024/25": {
+    "target": 981068740,
+    "actual": 753150000
+   },
+   "FY2025/26": {
+    "target": 1064910000,
+    "actual": 714570000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 397663359,
+   "private_total_jul25_apr26": 338447810.6
+  },
+  "phc": {
+   "level2": 115340913,
+   "level3": 137809545,
+   "level4": 42731614,
+   "total_jul25_mar26": 295882072
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2022/23",
+    "detail": "Actual is 257% of target; check target set unrealistically low"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 171% of target; check target set unrealistically low"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 180% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "013",
+  "code": 2,
+  "name": "Kwale",
+  "region": "Coast",
+  "status": "on-track",
+  "statusReason": "83% of the revised health budget was spent in FY2023/24",
+  "capital": "Kwale",
+  "population": "866,820",
+  "promisedBudgetKES": 3654,
+  "deliveredBudgetKES": 3030,
+  "absorptionRate": 82.9,
+  "pendingDisbursementKES": 624,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 39% of its revised budget (KES 248M of 635M). FY2024/25 health actuals are missing or implausibly low in the source report: ask the county why. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kwale: 83% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3180034408,
+    "q4_actual": 2808070530,
+    "absorption": 0.883,
+    "recurrent_est": 2402288035,
+    "recurrent_actual": 2347728073,
+    "development_est": 777746373,
+    "development_actual": 460342457,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3653830686,
+    "q4_actual": 3030108255,
+    "absorption": 0.8293,
+    "recurrent_est": 3018955276,
+    "recurrent_actual": 2782478463,
+    "development_est": 634875410,
+    "development_actual": 247629792,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3395003852,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 3057898446,
+    "recurrent_actual": 0,
+    "development_est": 337105406,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2025/26": {
+    "q1_approved": 1596340000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 315000000,
+    "actual": 392952872
+   },
+   "FY2023/24": {
+    "target": 600000000,
+    "actual": 257844508
+   },
+   "FY2024/25": {
+    "target": 450000000,
+    "actual": 186780000
+   },
+   "FY2025/26": {
+    "target": 486040000,
+    "actual": 552300000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 0,
+    "actual": 169533420
+   },
+   "FY2024/25": {
+    "target": 300000000,
+    "actual": 84250000
+   },
+   "FY2025/26": {
+    "target": 400000000,
+    "actual": 292380000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 159691513,
+   "gok_total_jul25_apr26": 122543779
+  },
+  "phc": {
+   "level2": 99147253,
+   "level3": 48336238,
+   "level4": 34408386,
+   "total_jul25_mar26": 181891877
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ACTUAL_MISSING",
+    "metric": "Health Q4 actual",
+    "fy": "FY 2024/25",
+    "detail": "Revised estimate 3,395,003,852 but actual is blank or zero"
+   },
+   {
+    "severity": "Medium",
+    "flag": "TARGET_ZERO",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "FIF target is zero or blank"
+   }
+  ]
+ },
+ {
+  "id": "014",
+  "code": 41,
+  "name": "Siaya",
+  "region": "Nyanza",
+  "status": "lagging",
+  "statusReason": "78% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Siaya",
+  "population": "993,183",
+  "promisedBudgetKES": 1719,
+  "deliveredBudgetKES": 1347,
+  "absorptionRate": 78.4,
+  "pendingDisbursementKES": 371,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "No development budget was reported in the Q4 revised estimates. FY2024/25 health actuals are missing or implausibly low in the source report: ask the county why. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Siaya: 78% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 85,
+   "y": 220,
+   "svgPathD": "M 70,205 L 105,205 L 110,240 L 75,240 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2433137839,
+    "q4_actual": 1550720135.7499998,
+    "absorption": 0.6373,
+    "recurrent_est": 2098836082,
+    "recurrent_actual": 1461371999.1499999,
+    "development_est": 334301757,
+    "development_actual": 89348136.6,
+    "status": "lagging"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1718605206,
+    "q4_actual": 1347156457,
+    "absorption": 0.7839,
+    "recurrent_est": 1718605206,
+    "recurrent_actual": 1347156457,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1725523280,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 1725523280,
+    "recurrent_actual": 0,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2025/26": {
+    "q1_approved": 3366810000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 580998234,
+    "actual": 402229607
+   },
+   "FY2023/24": {
+    "target": 434949494,
+    "actual": 222110969
+   },
+   "FY2024/25": {
+    "target": 849363883,
+    "actual": 136080000
+   },
+   "FY2025/26": {
+    "target": 2036240000,
+    "actual": 607450000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 325505006,
+    "actual": 388626776
+   },
+   "FY2024/25": {
+    "target": 194697423,
+    "actual": 340200000
+   },
+   "FY2025/26": {
+    "target": 1078690000,
+    "actual": 423240000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 326019375.5,
+   "private_total_jul25_apr26": 360088887
+  },
+  "phc": {
+   "level2": 79883989,
+   "level3": 103933691,
+   "level4": 83473927,
+   "total_jul25_mar26": 267291607
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ACTUAL_MISSING",
+    "metric": "Health Q4 actual",
+    "fy": "FY 2024/25",
+    "detail": "Revised estimate 1,725,523,280 but actual is blank or zero"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2024/25",
+    "detail": "Actual is 175% of target"
+   }
+  ]
+ },
+ {
+  "id": "015",
+  "code": 3,
+  "name": "Kilifi",
+  "region": "Coast",
+  "status": "lagging",
+  "statusReason": "56% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Kilifi",
+  "population": "1,453,787",
+  "promisedBudgetKES": 4114,
+  "deliveredBudgetKES": 2322,
+  "absorptionRate": 56.4,
+  "pendingDisbursementKES": 1792,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 32% of its revised budget (KES 471M of 1,484M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kilifi: 56% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 325,
+   "y": 350,
+   "svgPathD": "M 300,320 L 350,310 L 375,370 L 315,385 L 290,345 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1765690000,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 1253030000,
+    "recurrent_actual": 0,
+    "development_est": 512660000,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 4113686271,
+    "q4_actual": 2321625735.15,
+    "absorption": 0.5644,
+    "recurrent_est": 2629422861,
+    "recurrent_actual": 1850243780.1,
+    "development_est": 1484263410,
+    "development_actual": 471381955.05,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 4069284045,
+    "q4_actual": 3185903052,
+    "absorption": 0.7829,
+    "recurrent_est": 3210484541,
+    "recurrent_actual": 2756513745,
+    "development_est": 858799504,
+    "development_actual": 429389307,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 4285150000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1467500000,
+    "actual": 661686660
+   },
+   "FY2023/24": {
+    "target": 1588634222,
+    "actual": 736398329
+   },
+   "FY2024/25": {
+    "target": 1570795142,
+    "actual": 577340000
+   },
+   "FY2025/26": {
+    "target": 1875710000,
+    "actual": 1216400000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 200000000,
+    "actual": 472221668
+   },
+   "FY2024/25": {
+    "target": 400000000,
+    "actual": 336440000
+   },
+   "FY2025/26": {
+    "target": 500000000,
+    "actual": 691780000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 417353577,
+   "private_total_jul25_apr26": 190076212
+  },
+  "phc": {
+   "level2": 214355015,
+   "level3": 66528464,
+   "level4": 59193537,
+   "total_jul25_mar26": 340077016
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ACTUAL_MISSING",
+    "metric": "Health Q4 actual",
+    "fy": "FY 2022/23",
+    "detail": "Revised estimate 1,765,690,000 but actual is blank or zero"
+   },
+   {
+    "severity": "Medium",
+    "flag": "SOURCE_NOTE",
+    "metric": "Programme breakdown",
+    "fy": "FY 2022/23",
+    "detail": "Source note: Kilifi did not report health expenditure by programme in Q4 FY22/23"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 236% of target"
+   }
+  ]
+ },
+ {
+  "id": "016",
+  "code": 37,
+  "name": "Kakamega",
+  "region": "Western",
+  "status": "on-track",
+  "statusReason": "88% of the revised health budget was spent in FY2023/24",
+  "capital": "Kakamega",
+  "population": "1,867,579",
+  "promisedBudgetKES": 1357,
+  "deliveredBudgetKES": 1193,
+  "absorptionRate": 87.9,
+  "pendingDisbursementKES": 164,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "FY2024/25 health actuals are missing or implausibly low in the source report: ask the county why. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kakamega: 88% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 105,
+   "y": 195,
+   "svgPathD": "M 90,175 L 125,175 L 130,215 L 95,215 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1784225977,
+    "q4_actual": 1592724064,
+    "absorption": 0.8927,
+    "recurrent_est": 1353476400,
+    "recurrent_actual": 1286865737,
+    "development_est": 430749577,
+    "development_actual": 305858327,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1357300000,
+    "q4_actual": 1193300000,
+    "absorption": 0.8792,
+    "recurrent_est": 1058000000,
+    "recurrent_actual": 950600000,
+    "development_est": 299300000,
+    "development_actual": 242700000,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 0,
+    "q4_actual": 0,
+    "absorption": null,
+    "recurrent_est": 0,
+    "recurrent_actual": 0,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "data_incomplete"
+   },
+   "FY2025/26": {
+    "q1_approved": 1683000000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 2000000000,
+    "actual": 1309679900
+   },
+   "FY2023/24": {
+    "target": 1881730000,
+    "actual": 546510693
+   },
+   "FY2024/25": {
+    "target": 1359000000,
+    "actual": 640550000
+   },
+   "FY2025/26": {
+    "target": 957370000,
+    "actual": 1237700000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 318270000,
+    "actual": 233562098
+   },
+   "FY2024/25": {
+    "target": 841000000,
+    "actual": 593750000
+   },
+   "FY2025/26": {
+    "target": 1242630000,
+    "actual": 806130000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 597568439.9,
+   "private_total_jul25_apr26": 389642351
+  },
+  "phc": {
+   "level2": 248012887,
+   "level3": 247013312,
+   "level4": 49966015,
+   "total_jul25_mar26": 544992214
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "ALL_BLANK_OR_ZERO",
+    "metric": "Health Q4 est/actual",
+    "fy": "FY 2024/25",
+    "detail": "No Q4 estimate and no actual reported"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Total county absorption",
+    "fy": "FY 2022/23",
+    "detail": "Whole-county absorption 48%"
+   }
+  ]
+ },
+ {
+  "id": "017",
+  "code": 34,
+  "name": "Kajiado",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "83% of the revised health budget was spent in FY2023/24",
+  "capital": "Kajiado",
+  "population": "1,117,840",
+  "promisedBudgetKES": 2926,
+  "deliveredBudgetKES": 2427,
+  "absorptionRate": 83.0,
+  "pendingDisbursementKES": 499,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 21% of its revised budget (KES 70M of 338M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Kajiado: 83% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2800212467,
+    "q4_actual": 2766165452,
+    "absorption": 0.9878,
+    "recurrent_est": 2347085116,
+    "recurrent_actual": 2331535188,
+    "development_est": 453127351,
+    "development_actual": 434630264,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2925871372,
+    "q4_actual": 2427355022,
+    "absorption": 0.8296,
+    "recurrent_est": 2587402075,
+    "recurrent_actual": 2357374096,
+    "development_est": 338469297,
+    "development_actual": 69980926,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3262115220,
+    "q4_actual": 1710200665,
+    "absorption": 0.5243,
+    "recurrent_est": 3164015220,
+    "recurrent_actual": 1682754215,
+    "development_est": 98100000,
+    "development_actual": 27446450,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 3501430000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1503946728,
+    "actual": 875281130
+   },
+   "FY2023/24": {
+    "target": 1200000000,
+    "actual": 369952762
+   },
+   "FY2024/25": {
+    "target": 1200000000,
+    "actual": 427110000
+   },
+   "FY2025/26": {
+    "target": 1200000000,
+    "actual": 728410000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 315702515,
+    "actual": 472221668
+   },
+   "FY2024/25": {
+    "target": 370000000,
+    "actual": 247420000
+   },
+   "FY2025/26": {
+    "target": 440000000,
+    "actual": 214170000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 644937558.16,
+   "gok_total_jul25_apr26": 346837746
+  },
+  "phc": {
+   "level2": 129955853,
+   "level3": 92071533,
+   "level4": 91229906,
+   "total_jul25_mar26": 313257292
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Total county absorption",
+    "fy": "FY 2022/23",
+    "detail": "Whole-county absorption 57%"
+   }
+  ]
+ },
+ {
+  "id": "018",
+  "code": 27,
+  "name": "Uasin Gishu",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "87% of the revised health budget was spent in FY2023/24",
+  "capital": "Eldoret",
+  "population": "1,163,186",
+  "promisedBudgetKES": 2807,
+  "deliveredBudgetKES": 2440,
+  "absorptionRate": 86.9,
+  "pendingDisbursementKES": 367,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Uasin Gishu: 87% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 135,
+   "y": 205,
+   "svgPathD": "M 115,190 L 155,185 L 160,225 L 120,230 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2677188055,
+    "q4_actual": 2433877435,
+    "absorption": 0.9091,
+    "recurrent_est": 2677188055,
+    "recurrent_actual": 2433877435,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2806775358,
+    "q4_actual": 2439948592.3500004,
+    "absorption": 0.8693,
+    "recurrent_est": 2233861089,
+    "recurrent_actual": 2116769000.6000001,
+    "development_est": 572914269,
+    "development_actual": 323179591.75,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3070718048,
+    "q4_actual": 2217749328,
+    "absorption": 0.7222,
+    "recurrent_est": 2927531929,
+    "recurrent_actual": 2088749328,
+    "development_est": 143186119,
+    "development_actual": 129000000,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 2397820000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1400471850,
+    "actual": 936606563
+   },
+   "FY2023/24": {
+    "target": 1108243370,
+    "actual": 1361941353
+   },
+   "FY2024/25": {
+    "target": 1312200000,
+    "actual": 760320000
+   },
+   "FY2025/26": {
+    "target": 1300000000,
+    "actual": 1058090000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 70800000,
+    "actual": 59386598
+   },
+   "FY2024/25": {
+    "target": 76800000,
+    "actual": 31090000
+   },
+   "FY2025/26": {
+    "target": 0,
+    "actual": 391540000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 1825729104.61,
+   "private_total_jul25_apr26": 2617404761
+  },
+  "phc": {
+   "level2": 131942988,
+   "level3": 106200988,
+   "level4": 82765948,
+   "total_jul25_mar26": 320909924
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "TARGET_ZERO",
+    "metric": "FIF",
+    "fy": "FY 2025/26",
+    "detail": "FIF target is zero or blank"
+   }
+  ]
+ },
+ {
+  "id": "019",
+  "code": 12,
+  "name": "Meru",
+  "region": "Eastern",
+  "status": "on-track",
+  "statusReason": "89% of the revised health budget was spent in FY2023/24",
+  "capital": "Meru",
+  "population": "1,545,714",
+  "promisedBudgetKES": 1200,
+  "deliveredBudgetKES": 1071,
+  "absorptionRate": 89.3,
+  "pendingDisbursementKES": 129,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Meru: 89% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 250,
+   "y": 225,
+   "svgPathD": "M 235,205 L 275,205 L 280,245 L 240,245 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 930375578.69,
+    "q4_actual": 873508766,
+    "absorption": 0.9389,
+    "recurrent_est": 930375578.69,
+    "recurrent_actual": 873508766,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1200024110,
+    "q4_actual": 1071396201,
+    "absorption": 0.8928,
+    "recurrent_est": 751505925,
+    "recurrent_actual": 657172641,
+    "development_est": 448518185,
+    "development_actual": 414223560,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1503453146,
+    "q4_actual": 386983107,
+    "absorption": 0.2574,
+    "recurrent_est": 704711013,
+    "recurrent_actual": 286399015,
+    "development_est": 798742133,
+    "development_actual": 100584092,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 1914100000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 600000000,
+    "actual": 418801954
+   },
+   "FY2023/24": {
+    "target": 550000000,
+    "actual": 381805168
+   },
+   "FY2024/25": {
+    "target": 500000000,
+    "actual": 275290000
+   },
+   "FY2025/26": {
+    "target": 796000000,
+    "actual": 1172890000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 316000000,
+    "actual": 580129111
+   },
+   "FY2024/25": {
+    "target": 550000000,
+    "actual": 498920000
+   },
+   "FY2025/26": {
+    "target": 1025500000,
+    "actual": 848190000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 1280713953.17,
+   "gok_total_jul25_apr26": 582657082
+  },
+  "phc": {
+   "level2": 117644725,
+   "level3": 114177151,
+   "level4": 48173131,
+   "total_jul25_mar26": 279995007
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 184% of target"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 26%; verify before attributing to county performance"
+   }
+  ]
+ },
+ {
+  "id": "020",
+  "code": 25,
+  "name": "Samburu",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "94% of the revised health budget was spent in FY2023/24",
+  "capital": "Maralal",
+  "population": "310,327",
+  "promisedBudgetKES": 1655,
+  "deliveredBudgetKES": 1555,
+  "absorptionRate": 93.9,
+  "pendingDisbursementKES": 101,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Samburu: 94% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1572268566,
+    "q4_actual": 1410489442,
+    "absorption": 0.8971,
+    "recurrent_est": 1183086892,
+    "recurrent_actual": 1133067799,
+    "development_est": 389181674,
+    "development_actual": 277421643,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1655421070,
+    "q4_actual": 1554660556,
+    "absorption": 0.9391,
+    "recurrent_est": 1362444257,
+    "recurrent_actual": 1334640756,
+    "development_est": 292976813,
+    "development_actual": 220019800,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1505016842,
+    "q4_actual": 854520774,
+    "absorption": 0.5678,
+    "recurrent_est": 1351316842,
+    "recurrent_actual": 800208713,
+    "development_est": 153700000,
+    "development_actual": 54312061,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 1600530000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 240330500,
+    "actual": 226516961
+   },
+   "FY2023/24": {
+    "target": 239027400,
+    "actual": 255453581
+   },
+   "FY2024/25": {
+    "target": 264930140,
+    "actual": 232870000
+   },
+   "FY2025/26": {
+    "target": 282370000,
+    "actual": 389820000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 17000000,
+    "actual": 11130343
+   },
+   "FY2024/25": {
+    "target": 18000000,
+    "actual": 7540000
+   },
+   "FY2025/26": {
+    "target": 19640000,
+    "actual": 112100000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 43417568,
+   "private_total_jul25_apr26": 6008280
+  },
+  "phc": {
+   "level2": 12227429,
+   "level3": 14428200,
+   "level4": 22926027,
+   "total_jul25_mar26": 49581656
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "FIF",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 571% of target"
+   }
+  ]
+ },
+ {
+  "id": "021",
+  "code": 28,
+  "name": "Elgeyo Marakwet",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "91% of the revised health budget was spent in FY2023/24",
+  "capital": "Iten",
+  "population": "454,480",
+  "promisedBudgetKES": 2180,
+  "deliveredBudgetKES": 1973,
+  "absorptionRate": 90.5,
+  "pendingDisbursementKES": 206,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Elgeyo Marakwet: 91% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": null,
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2208969588,
+    "q4_actual": 1839637419,
+    "absorption": 0.8328,
+    "recurrent_est": 1756342428,
+    "recurrent_actual": 1700309971,
+    "development_est": 452627160,
+    "development_actual": 139327448,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2179754194,
+    "q4_actual": 1973408769,
+    "absorption": 0.9053,
+    "recurrent_est": 1771655761,
+    "recurrent_actual": 1693376549,
+    "development_est": 408098433,
+    "development_actual": 280032220,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2325549744,
+    "q4_actual": 1291040211,
+    "absorption": 0.5552,
+    "recurrent_est": 2050387845,
+    "recurrent_actual": 1079257694,
+    "development_est": 275161899,
+    "development_actual": 211782517,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 2719850000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 246239212,
+    "actual": 217350490
+   },
+   "FY2023/24": {
+    "target": 70327132,
+    "actual": 177663632
+   },
+   "FY2024/25": {
+    "target": 105784971,
+    "actual": 56450000
+   },
+   "FY2025/26": {
+    "target": 107430000,
+    "actual": 285890000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 150000000,
+    "actual": 80841506
+   },
+   "FY2024/25": {
+    "target": 195000000,
+    "actual": 203460000
+   },
+   "FY2025/26": {
+    "target": 345000000,
+    "actual": 230110000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 159757336
+  },
+  "phc": {
+   "level2": 117495044,
+   "level3": 54143885,
+   "level4": 3702250,
+   "total_jul25_mar26": 175341179
+  },
+  "dataFlags": [
+   {
+    "severity": "High",
+    "flag": "COUNTY_MISSING",
+    "metric": "Coverage",
+    "fy": "All",
+    "detail": "County not found in 'SHIF private'"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 253% of target; check target set unrealistically low"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 266% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "022",
+  "code": 24,
+  "name": "West Pokot",
+  "region": "Rift Valley",
+  "status": "on-track",
+  "statusReason": "93% of the revised health budget was spent in FY2023/24",
+  "capital": "Kapenguria",
+  "population": "621,241",
+  "promisedBudgetKES": 2026,
+  "deliveredBudgetKES": 1893,
+  "absorptionRate": 93.4,
+  "pendingDisbursementKES": 134,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "West Pokot: 93% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 130,
+   "y": 145,
+   "svgPathD": "M 110,130 L 150,130 L 155,175 L 115,175 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1962544273,
+    "q4_actual": 1869898343,
+    "absorption": 0.9528,
+    "recurrent_est": 1962544273,
+    "recurrent_actual": 1869898343,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2026170000,
+    "q4_actual": 1892540000,
+    "absorption": 0.934,
+    "recurrent_est": 1843990000,
+    "recurrent_actual": 1800580000,
+    "development_est": 182180000,
+    "development_actual": 91960000,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2311604122,
+    "q4_actual": 1465208983,
+    "absorption": 0.6338,
+    "recurrent_est": 2054275319,
+    "recurrent_actual": 1439369343,
+    "development_est": 257328803,
+    "development_actual": 25839640,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 2859870000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 170000000,
+    "actual": 128195210
+   },
+   "FY2023/24": {
+    "target": 97200000,
+    "actual": 65447701
+   },
+   "FY2024/25": {
+    "target": 97195000,
+    "actual": 54360000
+   },
+   "FY2025/26": {
+    "target": 98150000,
+    "actual": 293650000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 132800000,
+    "actual": 119847000
+   },
+   "FY2024/25": {
+    "target": 132805000,
+    "actual": 90790000
+   },
+   "FY2025/26": {
+    "target": 192810000,
+    "actual": 216310000
+   }
+  },
+  "shif": {
+   "gok_total_jul25_apr26": 118357557,
+   "private_total_jul25_apr26": 102871273
+  },
+  "phc": {
+   "level2": 35841215,
+   "level3": 16084723,
+   "level4": 40351983,
+   "total_jul25_mar26": 92277921
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 299% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "023",
+  "code": 4,
+  "name": "Tana River",
+  "region": "Coast",
+  "status": "on-track",
+  "statusReason": "93% of the revised health budget was spent in FY2023/24",
+  "capital": "Hola",
+  "population": "315,943",
+  "promisedBudgetKES": 1517,
+  "deliveredBudgetKES": 1405,
+  "absorptionRate": 92.6,
+  "pendingDisbursementKES": 112,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Development spending was only 48% of its revised budget (KES 98M of 202M). Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Tana River: 93% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 345,
+   "y": 295,
+   "svgPathD": "M 320,270 L 370,260 L 380,315 L 335,325 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1244974923,
+    "q4_actual": 1091012902,
+    "absorption": 0.8763,
+    "recurrent_est": 1194974923,
+    "recurrent_actual": 1048746590,
+    "development_est": 50000000,
+    "development_actual": 42266312,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1516614963,
+    "q4_actual": 1404549359,
+    "absorption": 0.9261,
+    "recurrent_est": 1314914963,
+    "recurrent_actual": 1306885628,
+    "development_est": 201700000,
+    "development_actual": 97663731,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1732699836,
+    "q4_actual": 1248957290,
+    "absorption": 0.7208,
+    "recurrent_est": 1535999836,
+    "recurrent_actual": 1248957290,
+    "development_est": 196700000,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 1709080000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 87846000,
+    "actual": 59173171
+   },
+   "FY2023/24": {
+    "target": 92673773,
+    "actual": 88783403
+   },
+   "FY2024/25": {
+    "target": 92673773,
+    "actual": 163180000
+   },
+   "FY2025/26": {
+    "target": 200420000,
+    "actual": 87860000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 3956827,
+    "actual": 3785117
+   },
+   "FY2024/25": {
+    "target": 3956827,
+    "actual": 2960000
+   },
+   "FY2025/26": {
+    "target": 4350000,
+    "actual": 2240000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 110049198,
+   "gok_total_jul25_apr26": 16411110
+  },
+  "phc": {
+   "level2": 12825936,
+   "level3": 13324434,
+   "level4": 15309467,
+   "total_jul25_mar26": 41459837
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "DEV_ACTUAL_ZERO",
+    "metric": "Development spending",
+    "fy": "FY 2024/25",
+    "detail": "Development estimate exists but development actual is zero or blank while recurrent actual is reported"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2024/25",
+    "detail": "Actual is 176% of target; check target set unrealistically low"
+   }
+  ]
+ },
+ {
+  "id": "024",
+  "code": 9,
+  "name": "Mandera",
+  "region": "North Eastern",
+  "status": "on-track",
+  "statusReason": "94% of the revised health budget was spent in FY2023/24",
+  "capital": "Mandera Town",
+  "population": "867,457",
+  "promisedBudgetKES": 2665,
+  "deliveredBudgetKES": 2499,
+  "absorptionRate": 93.8,
+  "pendingDisbursementKES": 166,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "No development budget was reported in the Q4 revised estimates. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Mandera: 94% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 390,
+   "y": 95,
+   "svgPathD": "M 350,60 L 415,70 L 435,110 L 390,135 L 355,100 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 2840787296,
+    "q4_actual": 2620733589,
+    "absorption": 0.9225,
+    "recurrent_est": 2840787296,
+    "recurrent_actual": 2620733589,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 2664849412,
+    "q4_actual": 2499181121,
+    "absorption": 0.9378,
+    "recurrent_est": 2664849412,
+    "recurrent_actual": 2499181121,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 2657530035,
+    "q4_actual": 1410572303,
+    "absorption": 0.5308,
+    "recurrent_est": 2165448332,
+    "recurrent_actual": 1276351417,
+    "development_est": 492081703,
+    "development_actual": 134220886,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 3099170000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 255436786,
+    "actual": 122528934
+   },
+   "FY2023/24": {
+    "target": 284748838,
+    "actual": 142498606
+   },
+   "FY2024/25": {
+    "target": 278609881,
+    "actual": 143470000
+   },
+   "FY2025/26": {
+    "target": 360000000,
+    "actual": 275110000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 51785008,
+    "actual": 25548681
+   },
+   "FY2024/25": {
+    "target": 57923965,
+    "actual": 59360000
+   },
+   "FY2025/26": {
+    "target": 322530000,
+    "actual": 146980000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 885196812,
+   "gok_total_jul25_apr26": 113651531
+  },
+  "phc": {
+   "level2": 39573373,
+   "level3": 78298112,
+   "level4": 6565302,
+   "total_jul25_mar26": 124436787
+  },
+  "dataFlags": []
+ },
+ {
+  "id": "025",
+  "code": 23,
+  "name": "Turkana",
+  "region": "Rift Valley",
+  "status": "lagging",
+  "statusReason": "79% of the revised health budget was spent in FY2023/24 (benchmark: 80%)",
+  "capital": "Lodwar",
+  "population": "926,976",
+  "promisedBudgetKES": 1287,
+  "deliveredBudgetKES": 1016,
+  "absorptionRate": 79.0,
+  "pendingDisbursementKES": 271,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "No development budget was reported in the Q4 revised estimates. Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Turkana: 79% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 125,
+   "y": 90,
+   "svgPathD": "M 100,50 L 150,45 L 175,115 L 140,150 L 90,120 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 1609864212,
+    "q4_actual": 954047445,
+    "absorption": 0.5926,
+    "recurrent_est": 1609864212,
+    "recurrent_actual": 954047445,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 1287052540,
+    "q4_actual": 1016165891,
+    "absorption": 0.7895,
+    "recurrent_est": 1287052540,
+    "recurrent_actual": 1016165891,
+    "development_est": 0,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 1677631859,
+    "q4_actual": 422619915,
+    "absorption": 0.2519,
+    "recurrent_est": 1073831859,
+    "recurrent_actual": 422619915,
+    "development_est": 603800000,
+    "development_actual": 0,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 725120000,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 198000000,
+    "actual": 177717811
+   },
+   "FY2023/24": {
+    "target": 200000000,
+    "actual": 435271212
+   },
+   "FY2024/25": {
+    "target": 241000000,
+    "actual": 120520000
+   },
+   "FY2025/26": {
+    "target": 221000000,
+    "actual": 162920000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 0,
+    "actual": 95373844
+   },
+   "FY2024/25": {
+    "target": 79000000,
+    "actual": 109960000
+   },
+   "FY2025/26": {
+    "target": 159000000,
+    "actual": 19880000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 81373725,
+   "gok_total_jul25_apr26": 98641286.4
+  },
+  "phc": {
+   "level2": 72436574,
+   "level3": 30720559,
+   "level4": 12022086,
+   "total_jul25_mar26": 115179219
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2023/24",
+    "detail": "Actual is 218% of target; check target set unrealistically low"
+   },
+   {
+    "severity": "Medium",
+    "flag": "TARGET_ZERO",
+    "metric": "FIF",
+    "fy": "FY 2023/24",
+    "detail": "FIF target is zero or blank"
+   },
+   {
+    "severity": "Medium",
+    "flag": "ABSORPTION_LOW",
+    "metric": "Health absorption",
+    "fy": "FY 2024/25",
+    "detail": "Absorption 25%; verify before attributing to county performance"
+   },
+   {
+    "severity": "Medium",
+    "flag": "DEV_ACTUAL_ZERO",
+    "metric": "Development spending",
+    "fy": "FY 2024/25",
+    "detail": "Development estimate exists but development actual is zero or blank while recurrent actual is reported"
+   }
+  ]
+ },
+ {
+  "id": "026",
+  "code": 8,
+  "name": "Wajir",
+  "region": "North Eastern",
+  "status": "on-track",
+  "statusReason": "95% of the revised health budget was spent in FY2023/24",
+  "capital": "Wajir",
+  "population": "781,263",
+  "promisedBudgetKES": 3081,
+  "deliveredBudgetKES": 2935,
+  "absorptionRate": 95.3,
+  "pendingDisbursementKES": 146,
+  "unaccountedFundsKES": null,
+  "leakageRisk": null,
+  "auditorGeneralFlag": null,
+  "cobReportQuarter": "FY2023/24 Q4 (Controller of Budget county reports)",
+  "indicators": null,
+  "keyProjects": [],
+  "investigativeAngle": "Question to ask: where does maternal and newborn spending sit inside this budget?",
+  "editorHeadline": "Wajir: 95% of FY2023/24 county health budget spent",
+  "swahiliBrief": null,
+  "whistleblowerAlertsCount": null,
+  "keySources": null,
+  "mapCoord": {
+   "x": 345,
+   "y": 155,
+   "svgPathD": "M 320,120 L 370,110 L 400,165 L 350,195 L 310,160 Z"
+  },
+  "dataNote": "Whole county health budget, not maternal-specific. Preliminary, being verified against Controller of Budget reports.",
+  "health": {
+   "FY2022/23": {
+    "q4_revised_estimate": 3050383214,
+    "q4_actual": 2886834436,
+    "absorption": 0.9464,
+    "recurrent_est": 2636998186,
+    "recurrent_actual": 2577555161,
+    "development_est": 413385028,
+    "development_actual": 309279275,
+    "status": "on_track"
+   },
+   "FY2023/24": {
+    "q4_revised_estimate": 3081078607,
+    "q4_actual": 2935372226.0499997,
+    "absorption": 0.9527,
+    "recurrent_est": 2665416982,
+    "recurrent_actual": 2532788161.95,
+    "development_est": 415661625,
+    "development_actual": 402584064.1,
+    "status": "on_track"
+   },
+   "FY2024/25": {
+    "q4_revised_estimate": 3843025621,
+    "q4_actual": 2389965458,
+    "absorption": 0.6219,
+    "recurrent_est": 3050294992,
+    "recurrent_actual": 1933121888,
+    "development_est": 792730629,
+    "development_actual": 456843570,
+    "status": "lagging"
+   },
+   "FY2025/26": {
+    "q1_approved": 3661650874,
+    "note": "No actuals reported yet"
+   }
+  },
+  "osr": {
+   "FY2022/23": {
+    "target": 1000000000,
+    "actual": 46746101
+   },
+   "FY2023/24": {
+    "target": 170000000,
+    "actual": 164953671
+   },
+   "FY2024/25": {
+    "target": 800000000,
+    "actual": 87930000
+   },
+   "FY2025/26": {
+    "target": 110000000,
+    "actual": 242510000
+   }
+  },
+  "fif": {
+   "FY2023/24": {
+    "target": 30000000,
+    "actual": 0
+   },
+   "FY2024/25": {
+    "target": 120000000,
+    "actual": 79370000
+   },
+   "FY2025/26": {
+    "target": 240000000,
+    "actual": 166730000
+   }
+  },
+  "shif": {
+   "private_total_jul25_apr26": 457608319,
+   "gok_total_jul25_apr26": 109400470.8
+  },
+  "phc": {
+   "level2": 49928036,
+   "level3": 48084663,
+   "level4": 6948905,
+   "total_jul25_mar26": 104961604
+  },
+  "dataFlags": [
+   {
+    "severity": "Medium",
+    "flag": "ACTUAL_ABOVE_150PCT_TARGET",
+    "metric": "OSR",
+    "fy": "FY 2025/26",
+    "detail": "Actual is 220% of target; check target set unrealistically low"
+   }
+  ]
+ }
+]

@@ -2,18 +2,13 @@ import React, { useState } from 'react';
 import { CountyHealthData, SecureTipSubmission } from '../types';
 import { generateVerificationHash } from '../utils/formatters';
 import {
-  ShieldCheck,
-  Lock,
-  FileCheck,
-  AlertTriangle,
-  Upload,
-  Copy,
-  Check,
   X,
-  FileText,
-  Key,
-  Shield,
-  Download
+  Send,
+  EyeOff,
+  Check,
+  Copy,
+  FileCheck2,
+  UploadCloud
 } from 'lucide-react';
 
 interface SecureReportingModalProps {
@@ -33,10 +28,10 @@ export const SecureReportingModal: React.FC<SecureReportingModalProps> = ({
   onTipSubmitted,
   existingTips,
 }) => {
-  const [activeTab, setActiveTab] = useState<'submit' | 'verified-leads' | 'export-dossier'>('submit');
+  const [activeTab, setActiveTab] = useState<'submit' | 'recent-reports'>('submit');
   const [countyId, setCountyId] = useState(selectedCounty.id);
   const [facility, setFacility] = useState('');
-  const [category, setCategory] = useState<SecureTipSubmission['category']>('Ghost Maternity Ward');
+  const [category, setCategory] = useState<SecureTipSubmission['category']>('Unreported Spending');
   const [incidentDate, setIncidentDate] = useState('2024-03-15');
   const [description, setDescription] = useState('');
   const [urgency, setUrgency] = useState<'Standard' | 'Urgent' | 'Breaking Lead'>('Urgent');
@@ -65,7 +60,7 @@ export const SecureReportingModal: React.FC<SecureReportingModalProps> = ({
       urgency,
       verificationHash: hash,
       submittedAt: new Date().toISOString().split('T')[0],
-      status: 'Verified',
+      status: 'Pending Review',
     };
 
     onTipSubmitted(newTip);
@@ -79,252 +74,214 @@ export const SecureReportingModal: React.FC<SecureReportingModalProps> = ({
     setTimeout(() => setCopiedHash(false), 2000);
   };
 
-  const handleDownloadDossier = () => {
-    const markdownContent = `# WALLET & WOMB: MATERNAL HEALTH SPENDING INVESTIGATIVE DOSSIER
-Generated: ${new Date().toLocaleDateString('en-GB')}
-Target County: ${selectedCounty.name} County (Code #${selectedCounty.code})
-Region: ${selectedCounty.region} | Status: ${selectedCounty.status.toUpperCase()}
-
-## 1. FINANCIAL SUMMARY
-- Government Allocation (Promised): KES ${selectedCounty.promisedBudgetKES}M
-- Actual Healthcare Spending (Delivered): KES ${selectedCounty.deliveredBudgetKES}M
-- Budget Absorption Rate: ${selectedCounty.absorptionRate.toFixed(1)}%
-- Funding Deficit (Unrealized): KES ${selectedCounty.promisedBudgetKES - selectedCounty.deliveredBudgetKES}M
-- Unaccounted Funds Flagged: KES ${selectedCounty.unaccountedFundsKES}M
-- Leakage Risk Score: ${selectedCounty.leakageRisk}
-- Controller of Budget Reference: ${selectedCounty.cobReportQuarter}
-
-## 2. MATERNAL & NEWBORN CLINICAL INDICATORS
-- Maternal Mortality Ratio (MMR): ${selectedCounty.indicators.mmr} deaths per 100,000 live births
-- Skilled Birth Attendance: ${selectedCounty.indicators.skilledBirthAttendance}%
-- 4+ Antenatal Care Visits: ${selectedCounty.indicators.anc4Visits}%
-- Neonatal Mortality: ${selectedCounty.indicators.neonatalMortality} per 1,000 live births
-- Emergency Obstetric Readiness: ${selectedCounty.indicators.emergencyObstetricReadiness}%
-
-## 3. KEY MATERNAL HEALTHCARE PROJECTS
-${selectedCounty.keyProjects
-  .map(
-    (p, i) =>
-      `${i + 1}. ${p.name}
-   - Facility: ${p.facility}
-   - Contractor: ${p.contractor}
-   - Allocation: KES ${p.allocatedKES}M | Spent: KES ${p.spentKES}M
-   - Status: ${p.status}
-   ${p.flagNotes ? `   - Audit Notes: ${p.flagNotes}` : ''}`
-  )
-  .join('\n\n')}
-
-## 4. INVESTIGATIVE LEAD & VERIFIED ANGLE
-"${selectedCounty.investigativeAngle}"
-
-Editor Headline: "${selectedCounty.editorHeadline}"
-Swahili Radio Bullet: "${selectedCounty.swahiliBrief}"
-
-Verification Source: Media Council of Kenya Aligned Data Protocol
-`;
-
-    const blob = new Blob([markdownContent], { type: 'text/markdown' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Wallet-Womb-Dossier-${selectedCounty.name}.md`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in">
-      <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Modal Top Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800 bg-slate-950/80">
-          <div className="flex items-center gap-2.5">
-            <span className="p-2 rounded-lg bg-emerald-950/90 border border-emerald-500/30 text-emerald-400">
-              <ShieldCheck className="w-5 h-5" />
-            </span>
-            <div>
-              <h3 className="text-base font-bold text-white tracking-wide">
-                Secure Data Reporting & Whistleblower Drop
-              </h3>
-              <p className="text-xs text-slate-400">
-                End-to-end encrypted evidence submission for health workers & investigative journalists
-              </p>
-            </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-neutral-950/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-2xl bg-neutral-900 border border-neutral-800 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-4 bg-neutral-950 border-b border-neutral-800">
+          <div>
+            <h3 className="text-base font-bold text-neutral-100">
+              Confidential Tip Drop
+            </h3>
+            <p className="text-[13px] text-neutral-400">
+              Direct reporting workspace for healthcare spending leads
+            </p>
           </div>
+
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
+            className="p-1.5 rounded-lg text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 transition"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex border-b border-slate-800 bg-slate-950/50 px-6 text-xs">
+        {/* Tab Controls */}
+        <div className="flex border-b border-neutral-800 bg-neutral-950 px-6 gap-3 text-[13px]">
           <button
             onClick={() => setActiveTab('submit')}
-            className={`py-3 px-4 font-semibold border-b-2 transition ${
+            className={`py-3 px-2 font-medium border-b-2 transition ${
               activeTab === 'submit'
-                ? 'border-blue-500 text-blue-400'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+                ? 'border-neutral-200 text-neutral-100 font-semibold'
+                : 'border-transparent text-neutral-400 hover:text-neutral-200'
             }`}
           >
-            Submit Anonymous Field Tip
+            Submit Field Lead
           </button>
           <button
-            onClick={() => setActiveTab('verified-leads')}
-            className={`py-3 px-4 font-semibold border-b-2 transition flex items-center gap-1.5 ${
-              activeTab === 'verified-leads'
-                ? 'border-blue-500 text-blue-400'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
+            onClick={() => setActiveTab('recent-reports')}
+            className={`py-3 px-2 font-medium border-b-2 transition flex items-center gap-1.5 ${
+              activeTab === 'recent-reports'
+                ? 'border-neutral-200 text-neutral-100 font-semibold'
+                : 'border-transparent text-neutral-400 hover:text-neutral-200'
             }`}
           >
-            <span>Verified Field Alerts</span>
-            <span className="px-1.5 py-0.2 rounded-full bg-slate-800 text-[10px] text-blue-300">
+            <span>Filed Reports</span>
+            <span className="px-2 py-0.5 rounded-full text-[13px] bg-neutral-800 text-neutral-300">
               {existingTips.length}
             </span>
-          </button>
-          <button
-            onClick={() => setActiveTab('export-dossier')}
-            className={`py-3 px-4 font-semibold border-b-2 transition ${
-              activeTab === 'export-dossier'
-                ? 'border-blue-500 text-blue-400'
-                : 'border-transparent text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            Export County Dossier
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-4 text-xs">
-          {/* TAB 1: SUBMIT ANONYMOUS TIP */}
+        <div className="p-6 overflow-y-auto space-y-4">
           {activeTab === 'submit' && (
             <div>
               {receiptHash ? (
-                /* Success Receipt */
-                <div className="bg-slate-950 border border-emerald-500/40 rounded-xl p-5 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-emerald-950 flex items-center justify-center border border-emerald-500/40 text-emerald-400">
-                      <Check className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-white">Encrypted Tip Successfully Logged</h4>
-                      <p className="text-[11px] text-slate-400">
-                        Your alert is logged with cryptographic verification and queued for Kenya editorial review.
-                      </p>
-                    </div>
+                <div className="bg-neutral-950 border border-neutral-800 rounded-xl p-6 text-center space-y-4">
+                  <div className="w-12 h-12 rounded-full bg-neutral-900 border border-neutral-700 text-neutral-200 flex items-center justify-center mx-auto">
+                    <FileCheck2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-100">Confidential Report Logged</h4>
+                    <p className="text-[13px] text-neutral-400 mt-1 max-w-md mx-auto">
+                      Your tip has been logged into the reporting queue for newsroom follow-up.
+                    </p>
                   </div>
 
-                  <div className="bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-1">
-                    <div className="text-[10px] text-slate-400 uppercase font-mono">Verification Receipt Hash (SHA-256):</div>
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="font-mono text-cyan-300 font-bold text-xs select-all">
-                        {receiptHash}
-                      </span>
-                      <button
-                        onClick={handleCopyHash}
-                        className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center gap-1 transition"
-                      >
-                        {copiedHash ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                        <span>{copiedHash ? 'Copied' : 'Copy Hash'}</span>
-                      </button>
-                    </div>
+                  <div className="bg-neutral-900 p-3 rounded-lg border border-neutral-800 text-[13px] font-mono max-w-md mx-auto">
+                    <div className="text-neutral-400 mb-1">Receipt Hash:</div>
+                    <div className="text-neutral-200 break-all select-all font-semibold">{receiptHash}</div>
                   </div>
 
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
-                    Keep this verification hash. It is your tamper-proof cryptographic proof of submission. No IP address, browser fingerprint, or identifying data was recorded.
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setReceiptHash(null);
-                      setFacility('');
-                      setDescription('');
-                    }}
-                    className="w-full py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-semibold transition"
-                  >
-                    Submit Another Report
-                  </button>
+                  <div className="flex justify-center gap-3 pt-2">
+                    <button
+                      onClick={handleCopyHash}
+                      className="px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-[13px] font-medium text-neutral-200 flex items-center gap-2 transition"
+                    >
+                      {copiedHash ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                      <span>{copiedHash ? 'Hash Copied' : 'Copy Hash'}</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setReceiptHash(null);
+                        setFacility('');
+                        setDescription('');
+                      }}
+                      className="px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-[13px] font-medium text-neutral-100 transition"
+                    >
+                      Submit Another
+                    </button>
+                  </div>
                 </div>
               ) : (
-                /* The Tip Form */
-                <form onSubmit={handleSubmitTip} className="space-y-4">
-                  <div className="p-3 bg-blue-950/30 border border-blue-800/40 rounded-lg flex items-start gap-2 text-slate-300">
-                    <Lock className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                    <span className="text-[11px] leading-relaxed">
-                      Zero-knowledge whistleblowing gateway. Submissions are scrubbed of metadata and accessible only to accredited health investigative desks.
-                    </span>
+                <form onSubmit={handleSubmitTip} className="space-y-4 text-[13px]">
+                  <div className="p-3.5 rounded-lg bg-neutral-950 border border-neutral-800 text-neutral-300 flex items-start gap-2.5">
+                    <EyeOff className="w-4 h-4 text-neutral-400 shrink-0 mt-0.5" />
+                    <div className="leading-relaxed">
+                      <strong>Source Protection:</strong> Submissions are processed without personal trackers or device identifiers.
+                    </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1">
-                        Target County:
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Target County
                       </label>
                       <select
                         value={countyId}
                         onChange={(e) => setCountyId(e.target.value)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500"
+                        className="w-full bg-neutral-950 border border-neutral-700 rounded-lg p-2.5 text-neutral-200 focus:outline-none focus:border-neutral-500"
                       >
                         {counties.map((c) => (
                           <option key={c.id} value={c.id}>
-                            #{String(c.code).padStart(2, '0')} {c.name} ({c.region})
+                            {c.name} County
                           </option>
                         ))}
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1">
-                        Violation Category:
-                      </label>
-                      <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value as any)}
-                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500"
-                      >
-                        <option value="Ghost Maternity Ward">Ghost Maternity Ward / Stalled Works</option>
-                        <option value="Medicine Stockout">Medicine & Commodity Stockout (Oxytocin/Blood)</option>
-                        <option value="Equipment Tampering">Broken / Tampered Incubators</option>
-                        <option value="Fund Diversion">Maternal Fund Diversion / Extortion</option>
-                        <option value="Unofficial Fees">Unofficial Out-of-Pocket Fees Demanded</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1">
-                        Facility Name & Sub-County:
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Health Facility / Ward
                       </label>
                       <input
                         type="text"
-                        placeholder="e.g. Mwingi Level 4 or Katilu Dispensary"
+                        placeholder="e.g. Sub-County Hospital, Level 3 Center"
                         value={facility}
                         onChange={(e) => setFacility(e.target.value)}
+                        className="w-full bg-neutral-950 border border-neutral-700 rounded-lg p-2.5 text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-neutral-500"
                         required
-                        className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1">
-                        Urgency Level:
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Category
                       </label>
-                      <div className="flex gap-2">
+                      <select
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value as any)}
+                        className="w-full bg-neutral-950 border border-neutral-700 rounded-lg p-2.5 text-neutral-200 focus:outline-none focus:border-neutral-500"
+                      >
+                        <option value="Unreported Spending">Unreported / Missing Spending</option>
+                        <option value="Medicine Stockout">Medicine & Supply Stockout</option>
+                        <option value="Equipment Tampering">Medical Equipment Non-Operation</option>
+                        <option value="Fund Diversion">County Health Fund Diversion</option>
+                        <option value="Unofficial Fees">Unofficial User Fees</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Date Observed
+                      </label>
+                      <input
+                        type="date"
+                        value={incidentDate}
+                        onChange={(e) => setIncidentDate(e.target.value)}
+                        className="w-full bg-neutral-950 border border-neutral-700 rounded-lg p-2.5 text-neutral-200 focus:outline-none focus:border-neutral-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-neutral-400 mb-1 font-medium">
+                      Description & Evidence Summary
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Provide specific details, dates, and facility units..."
+                      className="w-full bg-neutral-950 border border-neutral-700 rounded-lg p-3 text-neutral-200 placeholder-neutral-500 focus:outline-none focus:border-neutral-500"
+                      required
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Supporting Files Attached
+                      </label>
+                      <div className="flex items-center gap-3 bg-neutral-950 border border-neutral-700 rounded-lg p-2 px-3">
+                        <UploadCloud className="w-4 h-4 text-neutral-400" />
+                        <span className="text-neutral-300">{filesCount} file(s) attached</span>
+                        <button
+                          type="button"
+                          onClick={() => setFilesCount((c) => Math.min(c + 1, 5))}
+                          className="ml-auto text-[13px] px-2 py-0.5 rounded bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
+                        >
+                          + Add File
+                        </button>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-neutral-400 mb-1 font-medium">
+                        Priority Level
+                      </label>
+                      <div className="grid grid-cols-3 gap-2">
                         {(['Standard', 'Urgent', 'Breaking Lead'] as const).map((lvl) => (
                           <button
-                            type="button"
                             key={lvl}
+                            type="button"
                             onClick={() => setUrgency(lvl)}
-                            className={`flex-1 py-2 rounded-lg text-[10px] font-bold border transition ${
+                            className={`p-2 rounded-lg text-center font-medium transition ${
                               urgency === lvl
-                                ? lvl === 'Breaking Lead'
-                                  ? 'bg-rose-950 text-rose-300 border-rose-500'
-                                  : 'bg-blue-900 text-blue-200 border-blue-500'
-                                : 'bg-slate-950 text-slate-400 border-slate-800'
+                                ? 'bg-neutral-800 text-neutral-100 border border-neutral-600'
+                                : 'bg-neutral-950 border border-neutral-800 text-neutral-400 hover:text-neutral-200'
                             }`}
                           >
                             {lvl}
@@ -334,104 +291,55 @@ Verification Source: Media Council of Kenya Aligned Data Protocol
                     </div>
                   </div>
 
-                  <div>
-                    <label className="block text-[11px] font-mono text-slate-400 uppercase mb-1">
-                      Incident Details & Concrete Evidence:
-                    </label>
-                    <textarea
-                      rows={3}
-                      placeholder="Specify what happened, dates, contractors, or specific wards affected (e.g. 'The 12 neonatal incubators delivered in June have never been turned on due to faulty wiring...')"
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                      required
-                      className="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-slate-200 text-xs focus:outline-none focus:border-blue-500 resize-none"
-                    />
+                  <div className="pt-2 flex justify-end gap-3">
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="px-4 py-2 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-neutral-300 font-medium"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-5 py-2 rounded-lg bg-neutral-100 hover:bg-white text-neutral-900 font-bold flex items-center gap-2 shadow"
+                    >
+                      <Send className="w-4 h-4" />
+                      <span>Submit Lead</span>
+                    </button>
                   </div>
-
-                  {/* Attachment Simulator */}
-                  <div className="border border-dashed border-slate-800 bg-slate-950/60 p-3 rounded-lg text-center cursor-pointer hover:border-slate-700 transition">
-                    <Upload className="w-5 h-5 mx-auto text-slate-400 mb-1" />
-                    <span className="text-[11px] text-slate-300 block">
-                      Attach documents, delivery notes, or site photos (Optional)
-                    </span>
-                    <span className="text-[10px] text-slate-400 font-mono">
-                      EXIF data and file metadata automatically stripped before encryption.
-                    </span>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50"
-                  >
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Submit Encrypted Tip & Generate Verification Receipt</span>
-                  </button>
                 </form>
               )}
             </div>
           )}
 
-          {/* TAB 2: VERIFIED FIELD LEADS */}
-          {activeTab === 'verified-leads' && (
+          {activeTab === 'recent-reports' && (
             <div className="space-y-3">
-              <div className="text-[11px] text-slate-400">
-                Live repository of corroborated submissions currently under active review by editors:
+              <div className="text-[13px] text-neutral-400 pb-2 border-b border-neutral-800">
+                Logged reports from health facilities
               </div>
 
               {existingTips.map((tip) => (
-                <div
-                  key={tip.id}
-                  className="bg-slate-950/80 border border-slate-800 rounded-lg p-3 space-y-2"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-bold text-white text-xs">
-                      {tip.countyName} • {tip.facility}
-                    </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-400 border border-emerald-600/30">
-                      {tip.status}
+                <div key={tip.id} className="bg-neutral-950 border border-neutral-800 rounded-xl p-4 text-[13px] space-y-2">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-neutral-100">{tip.countyName} County</span>
+                      <span className="text-neutral-600">·</span>
+                      <span className="text-neutral-300">{tip.facility}</span>
+                    </div>
+                    <span className="px-2 py-0.5 rounded text-[13px] bg-neutral-900 text-neutral-300 border border-neutral-700">
+                      {tip.category}
                     </span>
                   </div>
 
-                  <div className="text-slate-300 text-xs">{tip.description}</div>
+                  <p className="text-neutral-300 leading-relaxed bg-neutral-900/60 p-2.5 rounded border border-neutral-800">
+                    "{tip.description}"
+                  </p>
 
-                  <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-[10px] text-slate-400 font-mono">
-                    <span>Category: <strong>{tip.category}</strong></span>
-                    <span>Audit Hash: <strong className="text-cyan-400">{tip.verificationHash}</strong></span>
-                    <span>Logged: {tip.submittedAt}</span>
+                  <div className="text-[13px] text-neutral-400">
+                    Filed: {tip.submittedAt}
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {/* TAB 3: EXPORT DOSSIER */}
-          {activeTab === 'export-dossier' && (
-            <div className="space-y-4">
-              <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 space-y-2">
-                <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-cyan-400" />
-                  Investigative Dossier: {selectedCounty.name} County
-                </h4>
-                <p className="text-[11px] text-slate-400">
-                  Export an offline Markdown or text investigation brief with verified exchequer releases, Controller of Budget reference numbers, project status audit notes, and source contacts.
-                </p>
-
-                <div className="p-3 bg-slate-900 rounded-lg border border-slate-800 text-[11px] font-mono space-y-1 text-slate-300">
-                  <div>County: {selectedCounty.name} (#{selectedCounty.code})</div>
-                  <div>Promised Allocation: KES {selectedCounty.promisedBudgetKES}M</div>
-                  <div>Actual Project Spending: KES {selectedCounty.deliveredBudgetKES}M</div>
-                  <div>Delivery Gap: KES {selectedCounty.promisedBudgetKES - selectedCounty.deliveredBudgetKES}M</div>
-                  <div>Status: {selectedCounty.status.toUpperCase()}</div>
-                </div>
-              </div>
-
-              <button
-                onClick={handleDownloadDossier}
-                className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold transition flex items-center justify-center gap-2 shadow-lg"
-              >
-                <Download className="w-4 h-4" />
-                <span>Download {selectedCounty.name} Investigation Dossier (.md)</span>
-              </button>
             </div>
           )}
         </div>

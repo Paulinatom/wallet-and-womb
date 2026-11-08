@@ -1,6 +1,100 @@
-export type CountyStatus = 'on-track' | 'lagging';
+export type CountyStatus = 'on-track' | 'lagging' | 'data-incomplete' | 'data_incomplete' | 'partial';
 
-export type LeakageRisk = 'Low' | 'Medium' | 'High' | 'Critical';
+export type MapLayerType = 
+  | 'budget-status'
+  | 'facility-delivery'
+  | 'skilled-provider'
+  | 'anc4-plus';
+
+export interface CountyStoryLead {
+  type: string;
+  headline: string;
+  detail: string;
+  angle: string;
+  question?: string;
+}
+
+export interface CountyYearData {
+  status: CountyStatus;
+  promised: number | null;
+  delivered: number | null;
+  absorption: number | null;
+  pending: number | null;
+  reportedActualNote?: string;
+  editorHeadline: string;
+  leads: CountyStoryLead[];
+  investigativeAngle?: string;
+}
+
+export interface YearSummaryLead {
+  county: string;
+  type: string;
+  headline: string;
+  detail: string;
+  angle: string;
+  question?: string;
+}
+
+export interface YearSummaryItem {
+  reliability: string;
+  note: string;
+  counts: {
+    'on-track': number;
+    lagging: number;
+    'data-incomplete': number;
+    partial: number;
+  };
+  totalPromisedAllCounties: number;
+  promisedReportingCounties?: number;
+  deliveredReportingCounties?: number;
+  absorption?: number;
+  pending?: number;
+  countiesIncluded?: number;
+  topLeads: YearSummaryLead[];
+  combinedLeadCount?: number;
+}
+
+export interface CountySurveyData {
+  source: string;
+  period: string;
+  anc4Plus: number;
+  facilityDelivery: number;
+  skilledBirthAttendance: number;
+  sampleBirths: number;
+  smallSample: boolean;
+  nationalAnc4Plus: number;
+  nationalFacilityDelivery: number;
+  nationalSkilledBirthAttendance: number;
+  belowNational: string[];
+}
+
+export interface CountiesFinalMetadata {
+  units: string;
+  scope: string;
+  source: string;
+  statusRule: string;
+  defaultYear: string;
+  years: string[];
+  disclaimer: string;
+  surveyNote: string;
+  nationalMMR: {
+    value: number;
+    per: string;
+    ci: [number, number];
+    source: string;
+  };
+  nationalSurvey: {
+    anc4Plus: number;
+    facilityDelivery: number;
+    skilledBirthAttendance: number;
+  };
+}
+
+export interface CountiesFinalData {
+  meta: CountiesFinalMetadata;
+  yearSummary: Record<string, YearSummaryItem>;
+  counties: CountyHealthData[];
+}
 
 export type KenyaRegion = 
   | 'North Eastern'
@@ -10,28 +104,52 @@ export type KenyaRegion =
   | 'Rift Valley'
   | 'Central'
   | 'Eastern'
-  | 'Nairobi';
+  | 'Nairobi'
+  | string;
 
-export interface MaternalProject {
-  id: string;
-  name: string;
-  category: 'Infrastructure' | 'Equipment' | 'Subsidies' | 'Commodities' | 'Emergency Transport';
-  allocatedKES: number; // in Millions KES
-  spentKES: number; // in Millions KES
-  status: 'Completed' | 'In Progress' | 'Stalled' | 'Audit Flagged';
-  facility: string;
-  contractor: string;
-  flagNotes?: string;
+export interface HealthYearRecord {
+  q4_revised_estimate?: number;
+  q4_actual?: number;
+  absorption?: number | null;
+  recurrent_est?: number;
+  recurrent_actual?: number;
+  development_est?: number;
+  development_actual?: number;
+  status?: string;
+  q1_approved?: number;
+  note?: string;
 }
 
-export interface CountyHealthIndicators {
-  mmr: number; // Maternal Mortality Ratio per 100,000 live births
-  neonatalMortality: number; // per 1,000 live births
-  skilledBirthAttendance: number; // percentage
-  anc4Visits: number; // 4+ ANC visits percentage
-  facilityDeliveryRate: number; // percentage
-  emergencyObstetricReadiness: number; // percentage
-  activeMidwivesPer10k: number;
+export interface OSRYearRecord {
+  target?: number;
+  actual?: number;
+}
+
+export interface FIFYearRecord {
+  target?: number;
+  actual?: number;
+}
+
+export interface SHIFRecord {
+  private_total_jul25_apr26?: number;
+  gok_total_jul25_apr26?: number;
+  [key: string]: number | undefined;
+}
+
+export interface PHCRecord {
+  level2?: number;
+  level3?: number;
+  level4?: number;
+  total_jul25_mar26?: number;
+  [key: string]: number | undefined;
+}
+
+export interface CountyDataFlag {
+  severity: 'High' | 'Medium' | 'Low' | string;
+  flag: string;
+  metric: string;
+  fy: string;
+  detail: string;
 }
 
 export interface CountyHealthData {
@@ -39,43 +157,45 @@ export interface CountyHealthData {
   code: number;
   name: string;
   region: KenyaRegion;
-  status: CountyStatus; // 'on-track' (green) or 'lagging' (red)
-  statusReason: string;
-  capital: string;
-  population: string;
+  status: CountyStatus;
+  statusReason?: string | null;
+  capital?: string | null;
+  population?: string | null;
   
-  // Budget accountability (in Millions KES)
-  promisedBudgetKES: number; // Budget allocation
-  deliveredBudgetKES: number; // Actual healthcare project spending disbursed
-  absorptionRate: number; // Delivered / Promised %
-  pendingDisbursementKES: number;
-  unaccountedFundsKES: number;
-  leakageRisk: LeakageRisk;
-  auditorGeneralFlag: boolean;
-  cobReportQuarter: string; // Controller of Budget reference
+  // County Health Budget accountability (in Millions KES)
+  promisedBudgetKES: number | null; // Approved budget allocation
+  deliveredBudgetKES: number | null; // Actual expenditure
+  absorptionRate: number | null; // Delivered / Promised %
+  pendingDisbursementKES: number | null;
+  reportedActualNote?: string | null;
+  unaccountedFundsKES?: number | null;
+  cobReportQuarter?: string | null;
+  dataNote?: string | null;
+  defaultYear?: string;
+  years: Record<string, CountyYearData>;
+  leads?: CountyStoryLead[];
   
-  // Health Outcomes
-  indicators: CountyHealthIndicators;
+  // Survey baseline layer (Mini DHS 2025-26)
+  survey: CountySurveyData;
   
-  // Projects
-  keyProjects: MaternalProject[];
+  // Multi-Year Controller of Budget Health Datasets
+  health?: Record<string, HealthYearRecord> | null;
+  osr?: Record<string, OSRYearRecord> | null;
+  fif?: Record<string, FIFYearRecord> | null;
+  shif?: SHIFRecord | null;
+  phc?: PHCRecord | null;
+  dataFlags?: CountyDataFlag[] | null;
   
-  // Journalism & Editorial Toolkit
-  investigativeAngle: string;
-  editorHeadline: string;
-  swahiliBrief: string;
-  whistleblowerAlertsCount: number;
-  keySources: {
-    cecHealth: string;
-    contactNote: string;
-  };
+  // Editorial angles and notes from dataset
+  investigativeAngle?: string | null;
+  editorHeadline?: string | null;
   
-  // Map coordinates (normalized SVG coordinate for Kenya map rendering)
-  mapCoord: {
+  // Normalized SVG coordinate for Kenya map rendering
+  mapCoord?: {
     x: number;
     y: number;
     svgPathD: string;
-  };
+  } | null;
 }
 
 export interface SecureTipSubmission {
@@ -83,7 +203,7 @@ export interface SecureTipSubmission {
   countyId: string;
   countyName: string;
   facility: string;
-  category: 'Ghost Maternity Ward' | 'Medicine Stockout' | 'Equipment Tampering' | 'Fund Diversion' | 'Unofficial Fees';
+  category: 'Medicine Stockout' | 'Equipment Tampering' | 'Fund Diversion' | 'Unofficial Fees' | 'Unreported Spending';
   incidentDate: string;
   description: string;
   evidenceFilesCount: number;
@@ -91,15 +211,4 @@ export interface SecureTipSubmission {
   verificationHash: string;
   submittedAt: string;
   status: 'Verified' | 'Pending Review' | 'Under Investigation';
-}
-
-export interface StoryPitch {
-  id: string;
-  county: string;
-  tag: 'Budget Leakage' | 'Health Disparity' | 'Success Story' | 'Audit Red Flag';
-  headline: string;
-  hook: string;
-  keyDataPoints: string[];
-  suggestedDesk: 'Investigative' | 'Special Projects' | 'Health Beat' | 'Data Desk';
-  urgency: 'Immediate' | 'Feature Pitch' | 'Weekend Read';
 }

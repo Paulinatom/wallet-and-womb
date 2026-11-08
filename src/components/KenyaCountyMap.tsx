@@ -1,27 +1,27 @@
 import React, { useState, useMemo } from 'react';
-import { CountyHealthData } from '../types';
-import { KENYA_ALL_GEO_PATHS, CountyGeoPath } from '../data/kenyaSvgPaths';
-import { formatKES } from '../utils/formatters';
-import {
+import { CountyHealthData, CountyStatus, MapLayerType } from '../types';
+import { KENYA_ALL_GEO_PATHS } from '../data/kenyaSvgPaths';
+import { COUNTIES_FINAL_DATA } from '../data/countiesData';
+import { 
+  ZoomIn, 
+  ZoomOut, 
+  RotateCcw, 
+  CheckCircle2, 
+  AlertTriangle, 
+  HelpCircle,
+  MinusCircle,
   MapPin,
-  CheckCircle2,
-  AlertTriangle,
-  ZoomIn,
-  ZoomOut,
-  RotateCcw,
   Layers,
-  Compass,
-  Eye,
-  Info,
-  ChevronRight
+  AlertCircle
 } from 'lucide-react';
 
 interface KenyaCountyMapProps {
   counties: CountyHealthData[];
   selectedCounty: CountyHealthData | null;
   onSelectCounty: (county: CountyHealthData) => void;
-  statusFilter: 'all' | 'on-track' | 'lagging';
-  setStatusFilter: (filter: 'all' | 'on-track' | 'lagging') => void;
+  statusFilter: 'all' | 'on-track' | 'lagging' | 'data-incomplete' | 'partial';
+  setStatusFilter: (filter: 'all' | 'on-track' | 'lagging' | 'data-incomplete' | 'partial') => void;
+  selectedYear: string;
 }
 
 export const KenyaCountyMap: React.FC<KenyaCountyMapProps> = ({
@@ -30,29 +30,32 @@ export const KenyaCountyMap: React.FC<KenyaCountyMapProps> = ({
   onSelectCounty,
   statusFilter,
   setStatusFilter,
+  selectedYear,
 }) => {
+  // Requirement 3: Map Layer toggle
+  const [activeLayer, setActiveLayer] = useState<MapLayerType>('budget-status');
   const [hoveredCounty, setHoveredCounty] = useState<CountyHealthData | null>(null);
   const [hoveredNonPilot, setHoveredNonPilot] = useState<string | null>(null);
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [pan, setPan] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [showBadges, setShowBadges] = useState<boolean>(true);
-  const [showLabels, setShowLabels] = useState<boolean>(true);
-  const [mapMode, setMapMode] = useState<'status' | 'absorption' | 'spending'>('status');
 
-  // Fast map lookup for the 26 pilot counties
+  const nationalSurvey = COUNTIES_FINAL_DATA.meta?.nationalSurvey || {
+    facilityDelivery: 91.1,
+    skilledBirthAttendance: 91.9,
+    anc4Plus: 72.4,
+  };
+
+  // Fast map lookup for the 26 counties
   const pilotCountiesMap = useMemo(() => {
     const map = new Map<string, CountyHealthData>();
     counties.forEach((c) => map.set(c.name, c));
     return map;
   }, [counties]);
 
-  // Non-pilot counties to render full authentic Kenya silhouette
+  // Non-pilot counties for authentic Kenya silhouette
   const nonPilotCounties = useMemo(() => {
     return Object.values(KENYA_ALL_GEO_PATHS).filter((g) => !pilotCountiesMap.has(g.name));
   }, [pilotCountiesMap]);
-
-  const onTrackCount = counties.filter((c) => c.status === 'on-track').length;
-  const laggingCount = counties.filter((c) => c.status === 'lagging').length;
 
   const handleZoomIn = () => setZoomLevel((z) => Math.min(z + 0.3, 2.5));
   const handleZoomOut = () => setZoomLevel((z) => Math.max(z - 0.3, 0.8));
@@ -61,188 +64,245 @@ export const KenyaCountyMap: React.FC<KenyaCountyMapProps> = ({
     setPan({ x: 0, y: 0 });
   };
 
+  const getCountyStatusCategory = (c: CountyHealthData): CountyStatus => {
+    if (c.status === 'data-incomplete' || c.status === 'data_incomplete') return 'data-incomplete';
+    if (c.status === 'partial') return 'partial';
+    if (c.status === 'lagging') return 'lagging';
+    return 'on-track';
+  };
+
+  // Helper to determine survey layer styling
+  const getSurveyLayerMetrics = (c: CountyHealthData) => {
+    if (activeLayer === 'facility-delivery') {
+      const val = c.survey?.facilityDelivery ?? 0;
+      const benchmark = nationalSurvey.facilityDelivery;
+      const isAbove = val >= benchmark;
+      return {
+        label: 'Births in a health facility',
+        value: val,
+        benchmark,
+        isAbove,
+        color: isAbove ? '#10b981' : '#f43f5e',
+      };
+    }
+    if (activeLayer === 'skilled-provider') {
+      const val = c.survey?.skilledBirthAttendance ?? 0;
+      const benchmark = nationalSurvey.skilledBirthAttendance;
+      const isAbove = val >= benchmark;
+      return {
+        label: 'Births with a skilled provider',
+        value: val,
+        benchmark,
+        isAbove,
+        color: isAbove ? '#10b981' : '#f43f5e',
+      };
+    }
+    if (activeLayer === 'anc4-plus') {
+      const val = c.survey?.anc4Plus ?? 0;
+      const benchmark = nationalSurvey.anc4Plus;
+      const isAbove = val >= benchmark;
+      return {
+        label: 'Women with 4+ antenatal visits',
+        value: val,
+        benchmark,
+        isAbove,
+        color: isAbove ? '#10b981' : '#f43f5e',
+      };
+    }
+    return null;
+  };
+
+  // Check if any partial counties exist for this year
+  const hasPartialCounties = useMemo(() => {
+    return counties.some((c) => c.status === 'partial');
+  }, [counties]);
+
   return (
-    <div
-      id="kenya-map-container"
-      className="relative bg-slate-900/90 border border-slate-800 rounded-xl p-4 lg:p-6 shadow-2xl backdrop-blur-md overflow-hidden flex flex-col"
-    >
-      {/* Header & Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-4 pb-3 border-b border-slate-800/80">
-        <div>
+    <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-4 sm:p-5 flex flex-col space-y-4">
+      {/* Map Header with Layer Toggle */}
+      <div className="flex flex-col gap-3 pb-3 border-b border-neutral-800">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center justify-center p-1.5 rounded-lg bg-blue-950/80 border border-blue-600/30 text-blue-400">
-              <MapPin className="w-4 h-4" />
-            </span>
-            <h3 className="text-base lg:text-lg font-bold text-white tracking-wide">
-              Official Kenya County Health Map (26 Pilot Counties)
+            <MapPin className="w-4 h-4 text-neutral-400" />
+            <h3 className="text-base font-bold text-neutral-100">
+              Kenya Map · {activeLayer === 'budget-status' ? `Health Budget (${selectedYear})` : 'Mini DHS 2025-26 Baseline'}
             </h3>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Geographically precise boundaries, dark-blue county shading, and live green/red accountability badges
-          </p>
+
+          {/* Layer Selector Dropdown/Pills */}
+          <div className="flex items-center gap-2">
+            <Layers className="w-4 h-4 text-neutral-400" />
+            <select
+              id="map-layer-select"
+              value={activeLayer}
+              onChange={(e) => setActiveLayer(e.target.value as MapLayerType)}
+              className="bg-neutral-950 border border-neutral-700 rounded-lg px-3 py-1.5 text-[13px] text-neutral-100 font-medium focus:outline-none focus:border-neutral-500 cursor-pointer"
+              aria-label="Select Map Layer"
+            >
+              <option value="budget-status" className="bg-neutral-900 text-neutral-100">
+                Budget status ({selectedYear})
+              </option>
+              <option value="facility-delivery" className="bg-neutral-900 text-neutral-100">
+                Births in a health facility
+              </option>
+              <option value="skilled-provider" className="bg-neutral-900 text-neutral-100">
+                Births with a skilled provider
+              </option>
+              <option value="anc4-plus" className="bg-neutral-900 text-neutral-100">
+                Women with 4+ antenatal visits
+              </option>
+            </select>
+          </div>
         </div>
 
-        {/* Filter Pills & Map Status Legend */}
-        <div className="flex items-center flex-wrap gap-2">
-          <div className="flex items-center bg-slate-950/80 p-1 rounded-lg border border-slate-800">
+        {/* Filter buttons visible when in budget status layer */}
+        {activeLayer === 'budget-status' && (
+          <div className="flex items-center flex-wrap bg-neutral-950 p-1 rounded-lg border border-neutral-800 text-[13px] self-start">
             <button
-              id="filter-all-counties-btn"
               onClick={() => setStatusFilter('all')}
-              className={`px-3 py-1 text-xs font-semibold rounded-md transition-all ${
+              className={`px-3 py-1 rounded-md font-medium transition ${
                 statusFilter === 'all'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-neutral-800 text-neutral-100'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
-              All 26 ({counties.length})
+              All
             </button>
             <button
-              id="filter-on-track-btn"
               onClick={() => setStatusFilter('on-track')}
-              className={`px-3 py-1 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1 rounded-md font-medium flex items-center gap-1.5 transition ${
                 statusFilter === 'on-track'
-                  ? 'bg-emerald-600 text-white shadow-sm'
-                  : 'text-emerald-400/80 hover:text-emerald-300'
+                  ? 'bg-neutral-800 text-emerald-400'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
-              On Track ({onTrackCount})
+              <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+              <span>On track</span>
             </button>
             <button
-              id="filter-lagging-btn"
               onClick={() => setStatusFilter('lagging')}
-              className={`px-3 py-1 text-xs font-semibold rounded-md flex items-center gap-1.5 transition-all ${
+              className={`px-3 py-1 rounded-md font-medium flex items-center gap-1.5 transition ${
                 statusFilter === 'lagging'
-                  ? 'bg-rose-600 text-white shadow-sm'
-                  : 'text-rose-400/80 hover:text-rose-300'
+                  ? 'bg-neutral-800 text-rose-400'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
-              <span className="w-2 h-2 rounded-full bg-rose-400 inline-block animate-pulse"></span>
-              Lagging Behind ({laggingCount})
-            </button>
-          </div>
-
-          {/* Layer toggles */}
-          <div className="hidden sm:flex items-center gap-1 bg-slate-950/80 p-1 rounded-lg border border-slate-800 text-xs">
-            <button
-              onClick={() => setShowBadges(!showBadges)}
-              className={`px-2 py-1 rounded transition ${
-                showBadges ? 'bg-slate-800 text-cyan-300' : 'text-slate-500 hover:text-slate-300'
-              }`}
-              title="Toggle Status Badges"
-            >
-              Badges
+              <span className="w-2 h-2 rounded-full bg-rose-400 inline-block" />
+              <span>Lagging</span>
             </button>
             <button
-              onClick={() => setShowLabels(!showLabels)}
-              className={`px-2 py-1 rounded transition ${
-                showLabels ? 'bg-slate-800 text-cyan-300' : 'text-slate-500 hover:text-slate-300'
+              onClick={() => setStatusFilter('data-incomplete')}
+              className={`px-3 py-1 rounded-md font-medium flex items-center gap-1.5 transition ${
+                statusFilter === 'data-incomplete'
+                  ? 'bg-neutral-800 text-amber-400'
+                  : 'text-neutral-400 hover:text-neutral-200'
               }`}
-              title="Toggle County Labels"
             >
-              Labels
+              <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
+              <span>Data incomplete</span>
             </button>
+            {hasPartialCounties && (
+              <button
+                onClick={() => setStatusFilter('partial')}
+                className={`px-3 py-1 rounded-md font-medium flex items-center gap-1.5 transition ${
+                  statusFilter === 'partial'
+                    ? 'bg-neutral-800 text-neutral-200'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+              >
+                <span className="w-2 h-2 rounded-full bg-neutral-400 inline-block" />
+                <span>Partial</span>
+              </button>
+            )}
           </div>
-        </div>
+        )}
       </div>
 
-      {/* Interactive Map Visual Stage */}
-      <div className="relative w-full h-[520px] lg:h-[580px] bg-gradient-to-b from-slate-950 via-[#070e1e] to-slate-950 rounded-xl border border-slate-800/80 overflow-hidden flex items-center justify-center">
-        {/* Geographic Background Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+      {/* Map Display Stage: Every county shaded dark blue */}
+      <div className="relative w-full h-[520px] lg:h-[580px] bg-neutral-950 rounded-xl border border-neutral-800 overflow-hidden flex items-center justify-center">
+        {/* Subtle Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#26262610_1px,transparent_1px),linear-gradient(to_bottom,#26262610_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
-        {/* Map Zoom & View Controls Floating Toolbar */}
-        <div className="absolute top-4 right-4 z-20 flex flex-col gap-1.5 bg-slate-900/90 border border-slate-800 p-1.5 rounded-lg shadow-lg backdrop-blur-md">
+        {/* Floating Zoom Controls */}
+        <div className="absolute top-3 right-3 z-20 flex flex-col gap-1 bg-neutral-900 border border-neutral-800 p-1 rounded-lg">
           <button
             onClick={handleZoomIn}
-            className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded transition"
+            className="p-1.5 text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 rounded transition"
             title="Zoom In"
-            aria-label="Zoom in on Kenya map"
+            aria-label="Zoom in"
           >
             <ZoomIn className="w-4 h-4" />
           </button>
           <button
             onClick={handleZoomOut}
-            className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded transition"
+            className="p-1.5 text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 rounded transition"
             title="Zoom Out"
-            aria-label="Zoom out on Kenya map"
+            aria-label="Zoom out"
           >
             <ZoomOut className="w-4 h-4" />
           </button>
           <button
             onClick={handleResetZoom}
-            className="p-1.5 text-slate-300 hover:text-white hover:bg-slate-800 rounded transition"
-            title="Reset Map View"
-            aria-label="Reset Kenya map view"
+            className="p-1.5 text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 rounded transition"
+            title="Reset Zoom"
+            aria-label="Reset zoom"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Legend Box in Bottom-Left */}
-        <div className="absolute bottom-4 left-4 z-20 bg-slate-950/85 border border-slate-800/90 rounded-lg p-3 shadow-xl backdrop-blur-md text-[11px] max-w-[210px] space-y-2">
-          <div className="font-bold text-white flex items-center justify-between border-b border-slate-800 pb-1">
-            <span>Status Budges Legend</span>
-            <span className="text-[10px] font-mono text-cyan-400">26 Tracked</span>
-          </div>
-
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] inline-block"></span>
-              <span>🟢 On Track (≥80% Delivered)</span>
-            </div>
-            <div className="flex items-center gap-2 text-rose-400 font-semibold">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_8px_#f43f5e] inline-block"></span>
-              <span>🔴 Lagging Behind (&lt;80%)</span>
-            </div>
-            <div className="flex items-center gap-2 text-slate-400 text-[10px] pt-1 border-t border-slate-800/80">
-              <span className="w-2 h-2 rounded bg-slate-800 border border-slate-700 inline-block"></span>
-              <span>Non-Pilot County (Context)</span>
-            </div>
-          </div>
+        {/* Status Legend (Dynamically switches based on layer) */}
+        <div className="absolute bottom-3 left-3 z-20 bg-neutral-900/90 border border-neutral-800 rounded-lg p-3 text-[13px] space-y-1.5 backdrop-blur-sm max-w-xs">
+          {activeLayer === 'budget-status' ? (
+            <>
+              <div className="font-semibold text-neutral-300">County Health Status ({selectedYear})</div>
+              <div className="flex items-center gap-2 text-emerald-400 font-medium">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
+                <span>On track (&ge;80% spent)</span>
+              </div>
+              <div className="flex items-center gap-2 text-rose-400 font-medium">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block" />
+                <span>Lagging (&lt;80% spent)</span>
+              </div>
+              <div className="flex items-center gap-2 text-amber-400 font-medium">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block" />
+                <span>Data incomplete</span>
+              </div>
+              {hasPartialCounties && (
+                <div className="flex items-center gap-2 text-neutral-300 font-medium">
+                  <span className="w-2.5 h-2.5 rounded-full bg-neutral-400 inline-block" />
+                  <span>Partial year</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <div className="font-semibold text-neutral-200">
+                {activeLayer === 'facility-delivery' && 'Births in Health Facility'}
+                {activeLayer === 'skilled-provider' && 'Births with Skilled Provider'}
+                {activeLayer === 'anc4-plus' && 'Women with 4+ Antenatal Visits'}
+              </div>
+              <div className="text-[13px] text-neutral-400">
+                National benchmark: <strong className="text-neutral-100">
+                  {activeLayer === 'facility-delivery' && `${nationalSurvey.facilityDelivery}%`}
+                  {activeLayer === 'skilled-provider' && `${nationalSurvey.skilledBirthAttendance}%`}
+                  {activeLayer === 'anc4-plus' && `${nationalSurvey.anc4Plus}%`}
+                </strong>
+              </div>
+              <div className="flex items-center gap-2 text-emerald-400 font-medium pt-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block" />
+                <span>At or above national</span>
+              </div>
+              <div className="flex items-center gap-2 text-rose-400 font-medium">
+                <span className="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block" />
+                <span>Below national</span>
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Geographic Labels & Watermark Identifiers */}
-        <div className="absolute top-4 left-4 pointer-events-none text-left font-mono text-[10px] text-slate-400">
-          <div className="flex items-center gap-1.5 font-bold text-slate-300">
-            <Compass className="w-3.5 h-3.5 text-blue-400" />
-            <span>KENYA GEODETIC REFERENCE</span>
-          </div>
-          <div className="text-[9px] text-slate-400">WGS 84 • 47 Counties Silhouette</div>
-        </div>
-
-        {/* Neighboring Country Guides */}
-        <div className="absolute top-2 left-1/3 pointer-events-none font-mono text-[9px] text-slate-400 tracking-wider">
-          ETHIOPIA
-        </div>
-        <div className="absolute top-1/4 right-3 pointer-events-none font-mono text-[9px] text-slate-400 tracking-wider text-right">
-          SOMALIA
-        </div>
-        <div className="absolute bottom-2 left-1/3 pointer-events-none font-mono text-[9px] text-slate-400 tracking-wider">
-          TANZANIA
-        </div>
-        <div className="absolute top-1/2 left-2 pointer-events-none font-mono text-[9px] text-slate-400 tracking-wider">
-          UGANDA
-        </div>
-
-        {/* Lake Turkana Water Indicator */}
-        <div className="absolute top-16 left-[28%] pointer-events-none font-mono text-[9px] text-cyan-400/50 uppercase tracking-widest">
-          Lake Turkana
-        </div>
-
-        {/* Lake Victoria Basin Indicator */}
-        <div className="absolute bottom-32 left-8 pointer-events-none font-mono text-[9px] text-cyan-400/50 uppercase tracking-widest">
-          Lake Victoria
-        </div>
-
-        {/* Indian Ocean Coast Indicator */}
-        <div className="absolute bottom-10 right-8 pointer-events-none text-right font-mono text-[9px] text-sky-400/50 uppercase tracking-widest">
-          Indian Ocean Coast
-        </div>
-
-        {/* Authentic SVG Map of Kenya */}
+        {/* SVG Map of Kenya */}
         <svg
-          id="kenya-authentic-svg-map"
           viewBox="-10 -10 314 398"
           className="w-full h-full cursor-grab active:cursor-grabbing select-none transition-transform duration-200"
           style={{
@@ -250,278 +310,313 @@ export const KenyaCountyMap: React.FC<KenyaCountyMapProps> = ({
           }}
         >
           <defs>
-            {/* Shaded dark blue gradient fills */}
-            <linearGradient id="darkBlueBase" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0c1833" />
-              <stop offset="50%" stopColor="#14264e" />
-              <stop offset="100%" stopColor="#0e1a38" />
+            {/* Shaded dark blue base gradients */}
+            <linearGradient id="darkBlueCounty" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0b1b36" />
+              <stop offset="100%" stopColor="#10254c" />
             </linearGradient>
 
-            <linearGradient id="darkBlueOnTrack" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0d244c" />
-              <stop offset="60%" stopColor="#143468" />
-              <stop offset="100%" stopColor="#064e3b" />
+            <linearGradient id="darkBlueSelected" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1d3557" />
+              <stop offset="100%" stopColor="#2a4d7a" />
             </linearGradient>
 
-            <linearGradient id="darkBlueLagging" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0f1e3c" />
-              <stop offset="60%" stopColor="#1c1f4e" />
-              <stop offset="100%" stopColor="#4c0519" />
+            <linearGradient id="darkBlueHover" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#142c54" />
+              <stop offset="100%" stopColor="#1c3e75" />
             </linearGradient>
-
-            <linearGradient id="selectedCountyGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#1d4ed8" />
-              <stop offset="50%" stopColor="#2563eb" />
-              <stop offset="100%" stopColor="#0284c7" />
-            </linearGradient>
-
-            {/* Glowing filters for status badge pins */}
-            <filter id="badgeGlowGreen" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#10b981" floodOpacity="0.8" />
-            </filter>
-            <filter id="badgeGlowRed" x="-40%" y="-40%" width="180%" height="180%">
-              <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#f43f5e" floodOpacity="0.8" />
-            </filter>
           </defs>
 
-          {/* Equator Guide Line across Central Kenya */}
-          <line
-            x1="0"
-            y1="210"
-            x2="292"
-            y2="210"
-            stroke="#2563eb"
-            strokeDasharray="2 4"
-            strokeWidth="0.5"
-            opacity="0.35"
-          />
-          <text x="4" y="207" fill="#60a5fa" opacity="0.6" fontSize="5" fontFamily="monospace">
-            EQUATOR 0°00'
-          </text>
-
-          {/* LAYER 1: 21 Non-Pilot Counties (Contextual Background Shaded in Deep Dark Blue) */}
-          <g id="non-pilot-counties-layer">
+          {/* Non-Pilot Counties Outline (shaded dark blue) */}
+          <g id="non-pilot-counties">
             {nonPilotCounties.map((nonPilot) => {
               const isHovered = hoveredNonPilot === nonPilot.name;
               return (
                 <path
                   key={`non-pilot-${nonPilot.id}`}
                   d={nonPilot.d}
-                  fill={isHovered ? '#12203d' : '#081020'}
-                  stroke={isHovered ? '#334155' : '#172554'}
+                  fill={isHovered ? '#0e1f3d' : '#081224'}
+                  stroke="#172847"
                   strokeWidth={0.5}
-                  strokeOpacity={0.7}
+                  strokeOpacity={0.8}
                   className="transition-colors duration-150 cursor-pointer"
                   onMouseEnter={() => setHoveredNonPilot(nonPilot.name)}
                   onMouseLeave={() => setHoveredNonPilot(null)}
                 >
-                  <title>{nonPilot.name} (National Non-Pilot County)</title>
+                  <title>{`${nonPilot.name} County`}</title>
                 </path>
               );
             })}
           </g>
 
-          {/* LAYER 2: 26 Pilot Counties (Shaded in Dark Blue with Green/Red Status Visuals) */}
-          <g id="pilot-counties-layer">
+          {/* 26 Tracked Counties (Dark blue shaded, colored by that layer) */}
+          <g id="tracked-counties">
             {counties.map((county) => {
               const geo = KENYA_ALL_GEO_PATHS[county.name];
-              if (!geo) return null;
+              const pathD = geo?.d || county.mapCoord?.svgPathD;
+              if (!pathD) return null;
 
               const isSelected = selectedCounty?.id === county.id;
               const isHovered = hoveredCounty?.id === county.id;
-              const isFilteredOut = statusFilter !== 'all' && county.status !== statusFilter;
+              const cat = getCountyStatusCategory(county);
+              const isFilteredOut = activeLayer === 'budget-status' && statusFilter !== 'all' && cat !== statusFilter;
 
-              // Dark blue shading with subtle status hints
-              let fillColor = 'url(#darkBlueBase)';
-              if (county.status === 'on-track') {
-                fillColor = 'url(#darkBlueOnTrack)';
-              } else if (county.status === 'lagging') {
-                fillColor = 'url(#darkBlueLagging)';
-              }
-
-              if (isSelected) {
-                fillColor = 'url(#selectedCountyGlow)';
-              }
-
-              const strokeColor = isSelected
-                ? '#38bdf8'
+              const fill = isSelected
+                ? 'url(#darkBlueSelected)'
                 : isHovered
-                ? '#93c5fd'
-                : county.status === 'on-track'
-                ? '#10b981'
-                : '#f43f5e';
+                ? 'url(#darkBlueHover)'
+                : 'url(#darkBlueCounty)';
 
-              const strokeWidth = isSelected ? 1.6 : isHovered ? 1.2 : 0.7;
+              let stroke = '#10b981';
+              if (activeLayer === 'budget-status') {
+                stroke = isSelected
+                  ? '#94a3b8'
+                  : isHovered
+                  ? '#cbd5e1'
+                  : cat === 'on-track'
+                  ? '#10b981'
+                  : cat === 'data-incomplete'
+                  ? '#eab308'
+                  : cat === 'partial'
+                  ? '#64748b'
+                  : '#f43f5e';
+              } else {
+                const sMetrics = getSurveyLayerMetrics(county);
+                stroke = isSelected
+                  ? '#ffffff'
+                  : isHovered
+                  ? '#cbd5e1'
+                  : sMetrics?.color || '#10b981';
+              }
+
+              const strokeWidth = isSelected ? 1.4 : isHovered ? 1.1 : 0.6;
 
               return (
-                <g
-                  key={`pilot-${county.id}`}
-                  className={`transition-opacity duration-200 ${
-                    isFilteredOut ? 'opacity-20 pointer-events-none' : 'opacity-100 cursor-pointer'
+                <path
+                  key={`county-${county.id}`}
+                  d={pathD}
+                  fill={fill}
+                  stroke={stroke}
+                  strokeWidth={strokeWidth}
+                  strokeLinejoin="round"
+                  className={`transition-all duration-150 cursor-pointer ${
+                    isFilteredOut ? 'opacity-25' : 'opacity-100 hover:brightness-125'
                   }`}
                   onClick={() => onSelectCounty(county)}
                   onMouseEnter={() => setHoveredCounty(county)}
                   onMouseLeave={() => setHoveredCounty(null)}
-                >
-                  {/* County Polygon */}
-                  <path
-                    d={geo.d}
-                    fill={fillColor}
-                    stroke={strokeColor}
-                    strokeWidth={strokeWidth}
-                    strokeLinejoin="round"
-                    className="transition-all duration-200 hover:brightness-125"
-                  />
-                </g>
+                />
               );
             })}
           </g>
 
-          {/* LAYER 3: Prominent Status Badges & County Labels (Green on Track, Red Lagging) */}
-          {showBadges && (
-            <g id="status-badges-layer" className="pointer-events-none">
-              {counties.map((county) => {
-                const geo = KENYA_ALL_GEO_PATHS[county.name];
-                if (!geo) return null;
+          {/* Status Pins & County Labels */}
+          <g id="county-pins-and-labels" className="pointer-events-none">
+            {counties.map((county) => {
+              const geo = KENYA_ALL_GEO_PATHS[county.name];
+              const cx = geo?.cx || county.mapCoord?.x;
+              const cy = geo?.cy || county.mapCoord?.y;
+              if (!cx || !cy) return null;
 
-                const isFilteredOut = statusFilter !== 'all' && county.status !== statusFilter;
-                if (isFilteredOut) return null;
+              const cat = getCountyStatusCategory(county);
+              const isFilteredOut = activeLayer === 'budget-status' && statusFilter !== 'all' && cat !== statusFilter;
+              if (isFilteredOut) return null;
 
-                const isSelected = selectedCounty?.id === county.id;
-                const isOnTrack = county.status === 'on-track';
-                const cx = geo.cx;
-                const cy = geo.cy;
+              const isSelected = selectedCounty?.id === county.id;
+              const isHovered = hoveredCounty?.id === county.id;
 
-                // Radius sizing: larger for selected or high-impact
-                const r = isSelected ? 4.2 : 3.2;
+              let pinColor = '#10b981';
+              if (activeLayer === 'budget-status') {
+                pinColor =
+                  cat === 'on-track'
+                    ? '#10b981'
+                    : cat === 'data-incomplete'
+                    ? '#eab308'
+                    : cat === 'partial'
+                    ? '#94a3b8'
+                    : '#f43f5e';
+              } else {
+                const sMetrics = getSurveyLayerMetrics(county);
+                pinColor = sMetrics?.color || '#10b981';
+              }
 
-                return (
-                  <g key={`badge-${county.id}`} className="transition-all duration-200">
-                    {/* Outer pulsating halo ring for selected or lagging counties */}
-                    {isSelected && (
-                      <circle
-                        cx={cx}
-                        cy={cy}
-                        r={r + 3.5}
-                        fill="none"
-                        stroke={isOnTrack ? '#34d399' : '#fb7185'}
-                        strokeWidth="0.8"
-                        strokeDasharray="2 2"
-                        className="animate-spin"
-                        style={{ transformOrigin: `${cx}px ${cy}px`, animationDuration: '6s' }}
-                      />
-                    )}
+              const r = isSelected ? 3.8 : 2.8;
 
-                    {/* Status Badge Pin Drop Shadow Filter */}
-                    <circle
-                      cx={cx}
-                      cy={cy}
-                      r={r}
-                      fill={isOnTrack ? '#059669' : '#e11d48'}
-                      stroke="#ffffff"
-                      strokeWidth={isSelected ? 1.0 : 0.6}
-                      filter={isOnTrack ? 'url(#badgeGlowGreen)' : 'url(#badgeGlowRed)'}
-                    />
+              return (
+                <g key={`pin-${county.id}`}>
+                  {/* Status Pin Circle */}
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={r}
+                    fill={pinColor}
+                    stroke="#ffffff"
+                    strokeWidth={isSelected ? 1 : 0.6}
+                  />
 
-                    {/* Center Dot Indicator */}
-                    <circle
-                      cx={cx}
-                      cy={cy}
-                      r={r * 0.4}
-                      fill="#ffffff"
-                      opacity={0.9}
-                    />
-
-                    {/* County Name Label */}
-                    {showLabels && (
-                      <text
-                        x={cx}
-                        y={cy + (r + 4.5)}
-                        textAnchor="middle"
-                        fill={isSelected ? '#ffffff' : '#e2e8f0'}
-                        fontSize={isSelected ? '5.2' : '4.2'}
-                        fontWeight={isSelected ? 'bold' : '600'}
-                        fontFamily="sans-serif"
-                        className="select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
-                      >
-                        {county.name}
-                      </text>
-                    )}
-                  </g>
-                );
-              })}
-            </g>
-          )}
+                  {/* County Name Label */}
+                  <text
+                    x={cx}
+                    y={cy + r + 4}
+                    textAnchor="middle"
+                    fill={isSelected ? '#ffffff' : isHovered ? '#e2e8f0' : '#cbd5e1'}
+                    fontSize={isSelected ? '5.2' : '4.2'}
+                    fontWeight={isSelected ? 'bold' : '600'}
+                    fontFamily="sans-serif"
+                    className="select-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]"
+                  >
+                    {county.name}
+                  </text>
+                </g>
+              );
+            })}
+          </g>
         </svg>
 
-        {/* Hover Tooltip Overlay Box */}
+        {/* Hover Tooltip Overlay */}
         {hoveredCounty && (
-          <div
-            className="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none bg-slate-950/95 border border-slate-700/90 rounded-xl p-3 shadow-2xl backdrop-blur-md text-xs min-w-[240px] max-w-[320px] animate-in fade-in duration-150"
-          >
-            <div className="flex items-center justify-between gap-2 pb-1.5 border-b border-slate-800">
-              <span className="font-bold text-white text-sm">
-                #{String(hoveredCounty.code).padStart(2, '0')} {hoveredCounty.name} County
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 z-30 pointer-events-none bg-neutral-900 border border-neutral-700 rounded-xl p-4 shadow-2xl text-[13px] min-w-[290px] max-w-[360px] space-y-2">
+            <div className="flex items-center justify-between gap-2 pb-2 border-b border-neutral-800">
+              <span className="font-bold text-neutral-100 text-sm">
+                {hoveredCounty.name} County
               </span>
-              {/* Green status badge for on track, red for lagging */}
-              {hoveredCounty.status === 'on-track' ? (
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/50 flex items-center gap-1">
-                  <CheckCircle2 className="w-3 h-3" /> ON TRACK
-                </span>
+
+              {activeLayer === 'budget-status' ? (
+                hoveredCounty.status === 'on-track' ? (
+                  <span className="px-2 py-0.5 rounded text-[13px] font-semibold bg-emerald-950 text-emerald-400 border border-emerald-500/40 inline-flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> On track
+                  </span>
+                ) : hoveredCounty.status === 'data-incomplete' ||
+                  hoveredCounty.status === 'data_incomplete' ? (
+                  <span className="px-2 py-0.5 rounded text-[13px] font-semibold bg-amber-950 text-amber-400 border border-amber-500/40 inline-flex items-center gap-1">
+                    <HelpCircle className="w-3.5 h-3.5" /> Data incomplete
+                  </span>
+                ) : hoveredCounty.status === 'partial' ? (
+                  <span className="px-2 py-0.5 rounded text-[13px] font-semibold bg-neutral-800 text-neutral-300 border border-neutral-600 inline-flex items-center gap-1">
+                    <MinusCircle className="w-3.5 h-3.5" /> Partial
+                  </span>
+                ) : (
+                  <span className="px-2 py-0.5 rounded text-[13px] font-semibold bg-rose-950 text-rose-400 border border-rose-500/40 inline-flex items-center gap-1">
+                    <AlertTriangle className="w-3.5 h-3.5" /> Lagging
+                  </span>
+                )
               ) : (
-                <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-950 text-rose-300 border border-rose-500/50 flex items-center gap-1">
-                  <AlertTriangle className="w-3 h-3" /> LAGGING
+                <span className="text-[13px] text-neutral-400">
+                  Mini DHS 2025-26
                 </span>
               )}
             </div>
 
-            <div className="grid grid-cols-2 gap-2 mt-2 font-mono text-[11px]">
-              <div>
-                <span className="text-slate-400 block text-[9px] uppercase">Promised Budget:</span>
-                <span className="text-blue-400 font-bold">{formatKES(hoveredCounty.promisedBudgetKES)}</span>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[9px] uppercase">Delivered Spending:</span>
-                <span className="text-cyan-400 font-bold">{formatKES(hoveredCounty.deliveredBudgetKES)}</span>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[9px] uppercase">Absorption Rate:</span>
-                <span className={`font-bold ${hoveredCounty.absorptionRate >= 80 ? 'text-emerald-400' : 'text-rose-400'}`}>
-                  {hoveredCounty.absorptionRate.toFixed(1)}%
-                </span>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[9px] uppercase">Maternal Mortality:</span>
-                <span className="text-rose-400 font-bold">{hoveredCounty.indicators.mmr} /100k</span>
-              </div>
-            </div>
+            {/* Content based on Active Layer */}
+            {activeLayer === 'budget-status' ? (
+              hoveredCounty.status === 'data-incomplete' ||
+              hoveredCounty.status === 'data_incomplete' ? (
+                <div className="text-[13px] text-amber-300 bg-neutral-950 p-2.5 rounded border border-amber-800/40 font-medium">
+                  {hoveredCounty.reportedActualNote || 'Data incomplete'}
+                </div>
+              ) : hoveredCounty.status === 'partial' ? (
+                <div className="text-[13px] text-neutral-300 bg-neutral-950 p-2.5 rounded border border-neutral-800">
+                  <div className="flex justify-between">
+                    <span className="text-neutral-400">Approved budget:</span>
+                    <span className="font-semibold text-neutral-100">
+                      {hoveredCounty.promisedBudgetKES != null ? `KES ${Number(hoveredCounty.promisedBudgetKES).toLocaleString()}M` : '-'}
+                    </span>
+                  </div>
+                  <div className="text-[13px] text-neutral-400 mt-1">
+                    Approved budget only (partial year)
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-3 gap-2 text-neutral-300">
+                  <div>
+                    <span className="text-neutral-400 block text-[13px]">Approved</span>
+                    <span className="font-semibold text-neutral-100">
+                      {hoveredCounty.promisedBudgetKES != null
+                        ? `KES ${hoveredCounty.promisedBudgetKES}M`
+                        : '-'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-400 block text-[13px]">Spent</span>
+                    <span className="font-semibold text-neutral-100">
+                      {hoveredCounty.deliveredBudgetKES != null
+                        ? `KES ${hoveredCounty.deliveredBudgetKES}M`
+                        : '-'}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-neutral-400 block text-[13px]">Absorption</span>
+                    <span
+                      className={`font-semibold ${
+                        hoveredCounty.status === 'on-track'
+                          ? 'text-emerald-400'
+                          : hoveredCounty.status === 'lagging'
+                          ? 'text-rose-400'
+                          : 'text-neutral-400'
+                      }`}
+                    >
+                      {hoveredCounty.absorptionRate != null
+                        ? `${hoveredCounty.absorptionRate.toFixed(1)}%`
+                        : '-'}
+                    </span>
+                  </div>
+                </div>
+              )
+            ) : (
+              /* Requirement 3: Survey Layer Tooltip: county, value, Source: Kenya Mini DHS 2025-26, and small sample flag */
+              <div className="space-y-2 text-[13px]">
+                <div className="flex items-center justify-between bg-neutral-950 p-2.5 rounded border border-neutral-800">
+                  <span className="text-neutral-400 font-medium">
+                    {activeLayer === 'facility-delivery' && 'Facility delivery rate:'}
+                    {activeLayer === 'skilled-provider' && 'Skilled birth attendance:'}
+                    {activeLayer === 'anc4-plus' && '4+ antenatal visits:'}
+                  </span>
+                  <span className="font-bold text-neutral-100 text-sm">
+                    {activeLayer === 'facility-delivery' && `${hoveredCounty.survey?.facilityDelivery ?? '-'}%`}
+                    {activeLayer === 'skilled-provider' && `${hoveredCounty.survey?.skilledBirthAttendance ?? '-'}%`}
+                    {activeLayer === 'anc4-plus' && `${hoveredCounty.survey?.anc4Plus ?? '-'}%`}
+                  </span>
+                </div>
 
-            <div className="mt-2 pt-1.5 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-400">
-              <span>{hoveredCounty.region} Region</span>
-              <span className="text-blue-400 flex items-center gap-0.5">
-                Click to inspect <ChevronRight className="w-3 h-3" />
-              </span>
-            </div>
+                <div className="flex items-center justify-between text-neutral-400">
+                  <span>National benchmark:</span>
+                  <span className="font-semibold text-neutral-200">
+                    {activeLayer === 'facility-delivery' && `${nationalSurvey.facilityDelivery}%`}
+                    {activeLayer === 'skilled-provider' && `${nationalSurvey.skilledBirthAttendance}%`}
+                    {activeLayer === 'anc4-plus' && `${nationalSurvey.anc4Plus}%`}
+                  </span>
+                </div>
+
+                <div className="text-neutral-400 text-[13px]">
+                  Source: Kenya Mini DHS 2025-26
+                </div>
+
+                {hoveredCounty.survey?.smallSample && (
+                  <div className="text-[13px] text-amber-300 bg-amber-950/60 p-2 rounded border border-amber-800/40 flex items-center gap-1.5 font-medium">
+                    <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                    <span>Small sample, interpret with caution</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeLayer === 'budget-status' && hoveredCounty.editorHeadline && (
+              <p className="text-[13px] text-neutral-300 pt-1.5 border-t border-neutral-800 leading-snug">
+                {hoveredCounty.editorHeadline}
+              </p>
+            )}
           </div>
         )}
       </div>
 
-      {/* Quick Summary Pill below Map */}
-      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
-        <div className="flex items-center gap-2">
-          <Info className="w-3.5 h-3.5 text-blue-400" />
-          <span>
-            Clicking any county on the map updates the <strong>Promised vs Delivered finances</strong>,{' '}
-            <strong>health indicators</strong>, and <strong>investigative desk widgets</strong>.
-          </span>
-        </div>
-        <div className="flex items-center gap-3 font-mono text-[11px]">
-          <span>Selected: <strong className="text-white">{selectedCounty?.name || 'None'}</strong></span>
-          <span>•</span>
-          <span>Status: <strong className={selectedCounty?.status === 'on-track' ? 'text-emerald-400' : 'text-rose-400'}>
-            {selectedCounty?.status === 'on-track' ? '🟢 ON TRACK' : '🔴 LAGGING BEHIND'}
-          </strong></span>
-        </div>
+      {/* Requirement 3: Under the map notes */}
+      <div className="bg-neutral-950 border border-neutral-800 rounded-lg p-3.5 space-y-1.5 text-[13px] text-neutral-400 leading-relaxed">
+        <p>
+          <strong className="text-neutral-300">Survey baseline</strong> (fixed, does not change with the financial year). Shown beside budget data, not as cause and effect.
+        </p>
+        <p className="text-neutral-300">
+          The Mini DHS reports maternal mortality at national level only: <strong>263 per 100,000 live births (CI 121 to 405)</strong>.
+        </p>
       </div>
     </div>
   );
